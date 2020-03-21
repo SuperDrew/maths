@@ -20,7 +20,7 @@ jobs:
       - name: build ui
         run: |
           npm i
-          npm build
+          npm run build
         env:
           CI: true
       - name: Deploy to pages
