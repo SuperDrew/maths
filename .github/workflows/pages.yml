@@ -3,9 +3,6 @@ name: Publish Pages
 on:
   push:
     branches: [ master ]
-    paths:
-      - 'src'
-
 jobs:
   publishPages:
     runs-on: ubuntu-latest
