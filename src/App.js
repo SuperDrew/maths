@@ -1,5 +1,7 @@
 import React from 'react';
+import { Form }  from './Form';
 import './App.css';
+import './reset.css';
 
 
 function App() {
@@ -11,9 +13,8 @@ function App() {
                 </p>
             </header>
 
-            <div>
-                <div><label className='App-label'>Scegli un numero</label></div>
-                <input className='App-input' type='number'/>
+            <div className='App-inputContainer'>
+                <Form/>
             </div>
         </div>
     );
