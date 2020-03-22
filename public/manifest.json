@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Mantu Generator",
+  "name": "Generatore di frasi del Mantu",
   "icons": [
     {
       "src": "favicon.ico",
