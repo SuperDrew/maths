@@ -1,6 +1,6 @@
 {
     "colours": {
-    "nero": "se"
+    "nero" : "se"
     "bianco": "semmai"
     "blu": "un giorno"
     "rosso": "se ieri"
@@ -93,11 +93,11 @@
     "cristina": "cambiasse"
     "anastasia": "cambiasse"
     "eleonora": "cambiasse"
-    "laura": "cambiasse"
-    "silvia": "cambiasse"
-    "giada": "cambiasse"
+    "laura" : "cambiasse"
+    "silvia" : "cambiasse"
+    "giada" : "cambiasse"
     "davide": "cambiasse"
-    "gianmarco": "cambiasse"
+    "gianmarco" : "cambiasse"
     "paola": "cambiasse"
   },
   "animals": {
