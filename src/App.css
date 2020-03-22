@@ -55,6 +55,10 @@ body {
   visibility: visible;
 }
 
+.App-phrase {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

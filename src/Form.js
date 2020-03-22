@@ -11,10 +11,22 @@ const isElementInTheList = (element, list) => {
 };
 
 export const Form = () => {
-    const { register, errors, triggerValidation} = useForm();
+    const { register, errors, triggerValidation, getValues} = useForm();
     const [colours, setColours] = useState([]);
     const [people, setPeople] = useState([]);
     const [animals, setAnimals] = useState([]);
+    const [responses, setResponses] = useState({
+        animals: {},
+        people: {},
+        numbers: {},
+        colours: {}
+    });
+    const [phrase, setPhrase] = useState({
+        numbers: '',
+        colours: '',
+        people: '',
+        animals: ''
+    });
 
     const validateColour = (colour) => {
         return isElementInTheList(colour, colours);
@@ -28,6 +40,34 @@ export const Form = () => {
         return isElementInTheList(animal, animals);
     };
 
+    const onValueChanged = async(key, responsesKey) => {
+        await triggerValidation();
+        const values = getValues();
+        const value = (values[key]).trim().toLowerCase();
+        const partOfPhrase = (responses[responsesKey][value] || "");
+
+        setPhrase({
+            ...phrase,
+            [responsesKey]: partOfPhrase
+        });
+    };
+
+    const numberChanged = async () => {
+        await onValueChanged('number', 'numbers')
+    };
+
+    const colourChanged = async () => {
+        await onValueChanged('colour', 'colours')
+    };
+
+    const peopleChanged = async () => {
+        await onValueChanged('person', 'people')
+    };
+
+    const animalChanged = async () => {
+        await onValueChanged('animal', 'animals')
+    };
+
     useEffect(() => {
         fetch(`${process.env.PUBLIC_URL}/data.json`).then((response) => {
             response.json().then((data) => {
@@ -35,54 +75,59 @@ export const Form = () => {
                 setPeople(data.people);
                 setAnimals(data.animals);
             })
-        })
+        });
+
+        fetch(`${process.env.PUBLIC_URL}/responses.json`).then((response) => {
+            response.json().then((data) => {
+                setResponses(data);
+            })
+        });
     }, []);
 
-    const validation = async () => {
-        await triggerValidation();
-    };
-
     return (
-        <form>
-            <Input
-                type='number'
-                label='Scegli un numero'
-                onChange={validation}
-                name='numbers'
-                registerValidation={register({ min: 1, max: 99 })}
-                errors={errors}
-                errorMesssage='Il Mantu sa contare da 1 a 99'>
-            </Input>
+        <>
+            <form>
+                <Input
+                    type='text'
+                    label='Scegli un colore'
+                    onChange={colourChanged}
+                    name='colour'
+                    registerValidation={register({ validate: validateColour })}
+                    errors={errors}
+                    errorMesssage='Il Mantu non conosce questo colore'>
+                </Input>
 
-            <Input
-                type='text'
-                label='Scegli un colore'
-                onChange={validation}
-                name='colours'
-                registerValidation={register({ validate: validateColour })}
-                errors={errors}
-                errorMesssage='Il Mantu non conosce questo colore'>
-            </Input>
+                <Input
+                    type='number'
+                    label='Scegli un numero'
+                    onChange={numberChanged}
+                    name='number'
+                    registerValidation={register({ min: 1, max: 99 })}
+                    errors={errors}
+                    errorMesssage='Il Mantu sa contare da 1 a 99'>
+                </Input>
 
-            <Input
-                type='text'
-                label='Scegli un nome di persona'
-                onChange={validation}
-                name='person'
-                registerValidation={register({ validate: validatePeople })}
-                errors={errors}
-                errorMesssage='E questo chi é?'>
-            </Input>
+                <Input
+                    type='text'
+                    label='Scegli un nome di persona'
+                    onChange={peopleChanged}
+                    name='person'
+                    registerValidation={register({ validate: validatePeople })}
+                    errors={errors}
+                    errorMesssage='E questo chi é?'>
+                </Input>
 
-            <Input
-                type='text'
-                label='Scegli un nome di animale'
-                onChange={validation}
-                name='animal'
-                registerValidation={register({ validate: validateAnimals })}
-                errors={errors}
-                errorMesssage='Il Mantu non conosce questo animale'>
-            </Input>
-        </form>
+                <Input
+                    type='text'
+                    label='Scegli un nome di animale'
+                    onChange={animalChanged}
+                    name='animal'
+                    registerValidation={register({ validate: validateAnimals })}
+                    errors={errors}
+                    errorMesssage='Il Mantu non conosce questo animale'>
+                </Input>
+            </form>
+            <span className='App-phrase'>{phrase.colours} {phrase.numbers} {phrase.people} {phrase.animals}</span>
+        </>
     );
 };
