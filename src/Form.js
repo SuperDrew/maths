@@ -2,8 +2,6 @@ import {useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
 import {Input} from "./Input";
 
-
-
 const isElementInTheList = (element, list) => {
     if(!element) {
         return true
@@ -16,6 +14,7 @@ export const Form = () => {
     const { register, errors, triggerValidation} = useForm();
     const [colours, setColours] = useState([]);
     const [people, setPeople] = useState([]);
+    const [animals, setAnimals] = useState([]);
 
     const validateColour = (colour) => {
         return isElementInTheList(colour, colours);
@@ -25,11 +24,16 @@ export const Form = () => {
         return isElementInTheList(person, people);
     };
 
+    const validateAnimals = (animal) => {
+        return isElementInTheList(animal, animals);
+    };
+
     useEffect(() => {
         fetch(`${process.env.PUBLIC_URL}/data.json`).then((response) => {
             response.json().then((data) => {
                 setColours(data.colours);
                 setPeople(data.people);
+                setAnimals(data.animals);
             })
         })
     }, []);
@@ -68,6 +72,16 @@ export const Form = () => {
                 registerValidation={register({ validate: validatePeople })}
                 errors={errors}
                 errorMesssage='E questo chi é?'>
+            </Input>
+
+            <Input
+                type='text'
+                label='Scegli un nome di animale'
+                onChange={validation}
+                name='animal'
+                registerValidation={register({ validate: validateAnimals })}
+                errors={errors}
+                errorMesssage='Il Mantu non conosce questo animale'>
             </Input>
         </form>
     );
