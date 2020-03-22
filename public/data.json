@@ -1,8 +1,11 @@
 {
   "colours": [
-    "rosso",
     "nero",
-    "bianco"
+    "bianco",
+    "blu",
+    "rosso",
+    "verde",
+    "giallo"
   ],
   "people": [
     "vittorio",
