@@ -16,7 +16,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 5rem;
+  font-size: 4rem;
   color: white;
 }
 
@@ -33,13 +33,13 @@ body {
 
 .App-label {
   font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .App-input {
   font-family: 'Dancing Script', cursive;
   color: white;
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin-top: 1rem;
   border-bottom: 1px solid #4e525a;
 }
@@ -56,7 +56,7 @@ body {
 }
 
 .App-phrase {
-  margin-top: 1rem;
+  margin-top: 4rem;
   font-size: 2.5rem;
 }
 @keyframes App-logo-spin {
