@@ -2,7 +2,7 @@ name: Publish Pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   publishPages:
     runs-on: ubuntu-latest
