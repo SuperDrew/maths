@@ -1,6 +1,6 @@
 {
-  "short_name": "Mantu Generator",
-  "name": "Generatore di frasi del Mantu",
+  "short_name": "Maths",
+  "name": "Generate useful maths questions",
   "icons": [
     {
       "src": "favicon.ico",
