@@ -1,51 +1,43 @@
 import React from 'react';
 import './reset.css';
-
+import Button from '@material-ui/core/Button';
+import {Checkbox, Container, FormControlLabel, Typography} from "@material-ui/core";
+import {LabelledSlider} from "./LabelledSlider";
 
 function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <p>
-                    Mathhssssss for everyone
-                </p>
+                <Typography variant="h1" align={"center"}>
+                    Maths
+                </Typography>
             </header>
-
-            <div className='App-inputContainer'>
+            <Container maxWidth = "sm">
                 <div>
-                    <label htmlFor="min">Minimum: </label>
-                    <select name="min" id="min">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                    </select>
+                    <LabelledSlider label="Minimum" max={10} defaultValue={0} step={1}/>
+                    <LabelledSlider label="Maximum" max={10} defaultValue={0} step={1}/>
                 </div>
-
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="checkedB"
+                            color="primary"
+                        />
+                    }
+                    label="addition"
+                    labelPlacement="start"
+                />
                 <div>
-                    <label htmlFor="max">Maximum: </label>
-                    <select name="max" id="max">
-                        <option value="10">10</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label htmlFor="addition">Use addition: </label>
-                    <input type="checkbox" id="addition" name="addition" value="addition"/>
-                </div>
-
-                <div>
-                    <button type="button">Generate maths fun!</button>
+                    <Button variant="contained" color="primary">
+                        Generate maths fun!
+                    </Button>
                 </div>
 
                 <table id="table">
                     <tr>
                     </tr>
                 </table>
-            </div>
+            </Container>
         </div>
     );
 }
