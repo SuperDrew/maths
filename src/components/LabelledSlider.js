@@ -11,6 +11,7 @@ export const LabelledSlider = (props) =>
                 {props.label}
             </Typography>
             <Slider
+                id={props.label}
                 defaultValue={props.defaultValue}
                 aria-labelledby="discrete-slider-custom"
                 step={props.step}

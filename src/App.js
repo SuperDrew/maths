@@ -1,42 +1,38 @@
 import React from 'react';
 import './reset.css';
 import Button from '@material-ui/core/Button';
-import {Checkbox, Container, FormControlLabel, Typography} from "@material-ui/core";
-import {LabelledSlider} from "./LabelledSlider";
+import {Container, Divider, Grid, Icon, Table, Typography} from "@material-ui/core";
+import {LabelledSlider} from "./components/LabelledSlider";
+import {LabelledCheckBox} from "./components/LabelledCheckBox";
+import {QuestionGrid} from "./components/QuestionGrid";
+import {useStyles} from "./styles/styles";
 
 function App() {
+    const classes = useStyles();
+
     return (
         <div className="App">
             <header className="App-header">
-                <Typography variant="h1" align={"center"}>
+                <Typography variant="h1" align="center">
                     Maths
                 </Typography>
             </header>
             <Container maxWidth = "sm">
                 <div>
-                    <LabelledSlider label="Minimum" max={10} defaultValue={0} step={1}/>
-                    <LabelledSlider label="Maximum" max={10} defaultValue={0} step={1}/>
+                    <LabelledSlider label="minimum" max={10} defaultValue={0} step={1}/>
+                    <LabelledSlider label="maximum" max={10} defaultValue={0} step={1}/>
                 </div>
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            name="checkedB"
-                            color="primary"
-                        />
-                    }
-                    label="addition"
-                    labelPlacement="start"
-                />
-                <div>
-                    <Button variant="contained" color="primary">
+                <Grid container className={classes.root}>
+                    <LabelledCheckBox name="addition" color="primary"/>
+                    <LabelledCheckBox name="subtraction" color="primary"/>
+                </Grid>
+                <Divider variant="middle"/>
+                <Grid container justify="center">
+                    <Button variant="contained" color="primary" endIcon={<Icon>send</Icon>}>
                         Generate maths fun!
                     </Button>
-                </div>
-
-                <table id="table">
-                    <tr>
-                    </tr>
-                </table>
+                </Grid>
+                <QuestionGrid label="Questions"/>
             </Container>
         </div>
     );
