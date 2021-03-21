@@ -1,7 +1,7 @@
 import React from 'react';
 import './reset.css';
 import Button from '@material-ui/core/Button';
-import {Container, Divider, Grid, Icon, Table, Typography} from "@material-ui/core";
+import {Container, Divider, Grid, Icon, Typography} from "@material-ui/core";
 import {LabelledSlider} from "./components/LabelledSlider";
 import {LabelledCheckBox} from "./components/LabelledCheckBox";
 import {QuestionGrid} from "./components/QuestionGrid";
@@ -32,7 +32,7 @@ function App() {
                         Generate maths fun!
                     </Button>
                 </Grid>
-                <QuestionGrid label="Questions"/>
+                <QuestionGrid label="Questions" min={0} max={10}/>
             </Container>
         </div>
     );

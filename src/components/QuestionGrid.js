@@ -6,17 +6,27 @@ export const QuestionGrid = (props) =>
     const min = props.min;
     const max = props.max;
 
-    function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
+    function randBetween(min, max) {
+        return Math.round(Math.random()*(max-min)+min);
     }
 
-    const rows = [
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-    ];
+    function generateRandomAdditionSum(min, max) {
+        return `${randBetween(min, max)} + ${randBetween(min, max)} = [    ]`;
+    }
+
+    function createRow(min, max, rowNumber) {
+        return {
+            key: rowNumber,
+            sum1: generateRandomAdditionSum(min,max),
+            sum2: generateRandomAdditionSum(min,max),
+            sum3: generateRandomAdditionSum(min,max)
+        };
+    }
+
+    const rows = [];
+    for (let i = 0; i <= 10; i++) {
+        rows.push(createRow(min, max, i))
+    }
 
     return (
         <>
@@ -26,14 +36,10 @@ export const QuestionGrid = (props) =>
             <Table>
                 <TableBody>
                     {rows.map((row) => (
-                        <TableRow key={row.name}>
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                        <TableRow key={row.key}>
+                            <TableCell align="right">{row.sum1}</TableCell>
+                            <TableCell align="right">{row.sum2}</TableCell>
+                            <TableCell align="right">{row.sum3}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
