@@ -1,7 +1,7 @@
 import {Table, TableBody, TableCell, TableRow, Typography} from "@material-ui/core";
 import React from "react";
 
-export const QuestionGrid = (props) =>
+export const QuestionTable = (props) =>
 {
     const min = props.min;
     const max = props.max;
