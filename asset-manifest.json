@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/mathss/static/css/main.2fc61f3f.chunk.css",
-    "main.js": "/mathss/static/js/main.3abc74b7.chunk.js",
-    "main.js.map": "/mathss/static/js/main.3abc74b7.chunk.js.map",
+    "main.js": "/mathss/static/js/main.25968b12.chunk.js",
+    "main.js.map": "/mathss/static/js/main.25968b12.chunk.js.map",
     "runtime-main.js": "/mathss/static/js/runtime-main.96ac1c09.js",
     "runtime-main.js.map": "/mathss/static/js/runtime-main.96ac1c09.js.map",
     "static/css/2.cc0d69ce.chunk.css": "/mathss/static/css/2.cc0d69ce.chunk.css",
     "static/js/2.c603e755.chunk.js": "/mathss/static/js/2.c603e755.chunk.js",
     "static/js/2.c603e755.chunk.js.map": "/mathss/static/js/2.c603e755.chunk.js.map",
     "index.html": "/mathss/index.html",
-    "precache-manifest.dd85bf531aed0187828e1b21f17c894e.js": "/mathss/precache-manifest.dd85bf531aed0187828e1b21f17c894e.js",
+    "precache-manifest.51e0040cf5d19558aeb6d6e7366a172e.js": "/mathss/precache-manifest.51e0040cf5d19558aeb6d6e7366a172e.js",
     "service-worker.js": "/mathss/service-worker.js",
     "static/css/2.cc0d69ce.chunk.css.map": "/mathss/static/css/2.cc0d69ce.chunk.css.map",
     "static/css/main.2fc61f3f.chunk.css.map": "/mathss/static/css/main.2fc61f3f.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.cc0d69ce.chunk.css",
     "static/js/2.c603e755.chunk.js",
     "static/css/main.2fc61f3f.chunk.css",
-    "static/js/main.3abc74b7.chunk.js"
+    "static/js/main.25968b12.chunk.js"
   ]
 }
