@@ -5,6 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('render App', () => {
     it('should not throw any exceptions', () => {
-        expect(render(<App />)).not.toThrow();
+        expect(() => render(<App />)).not.toThrow();
     });
 });
