@@ -24,12 +24,9 @@ const useStyles = makeStyles(() => ({
 
 function App() {
     const classes = useStyles();
-    const [min, setMin] = useState(0);
+    const min = 0;
     const [max, setMax] = useState(10);
     const [rows, setRows] = useState([]);
-    const updateMin = (changedMin) => {
-        setMin(changedMin);
-    };
 
     const updateMax = (changedMax) => {
         setMax(changedMax);
@@ -50,17 +47,6 @@ function App() {
             <Container maxWidth="sm">
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Paper className={classes.control}>
-                            <Grid item>
-                                <LabelledSlider
-                                    label="minimum"
-                                    max={10}
-                                    defaultValue={min}
-                                    step={1}
-                                    onChange={updateMin}
-                                />
-                            </Grid>
-                        </Paper>
                         <Paper className={classes.control}>
                             <Grid item>
                                 <LabelledSlider
