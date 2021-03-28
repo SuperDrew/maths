@@ -6,6 +6,7 @@ import { LabelledSlider } from './components/LabelledSlider';
 import { LabelledCheckBox } from './components/LabelledCheckBox';
 import { QuestionTable } from './components/QuestionTable';
 import { makeStyles, withStyles } from '@material-ui/styles';
+import { generateRows } from './Generator';
 
 const GlobalCss = withStyles({
     '@global': {
@@ -34,31 +35,8 @@ function App() {
         setMax(changedMax);
     };
 
-    const randBetween = (min, max) => {
-        return Math.round(Math.random() * (max - min) + min);
-    };
-
-    const generateRandomAdditionSum = (min, max) => {
-        return `${randBetween(min, max)} + ${randBetween(min, max)} = ___`;
-    };
-
-    const createRow = (min, max, rowNumber) => ({
-        key: rowNumber,
-        sum1: generateRandomAdditionSum(min, max),
-        sum2: generateRandomAdditionSum(min, max),
-        sum3: generateRandomAdditionSum(min, max),
-    });
-
-    const generateRows = (min, max) => {
-        const rows = [];
-        for (let i = 0; i <= 10; i++) {
-            rows.push(createRow(min, max, i));
-        }
-        setRows(rows);
-    };
-
     useEffect(() => {
-        generateRows(min, max);
+        setRows(generateRows(min, max));
     }, [min, max]);
 
     return (
@@ -115,7 +93,7 @@ function App() {
                                 color="primary"
                                 endIcon={<Icon>send</Icon>}
                                 onClick={() => {
-                                    generateRows(min, max);
+                                    setRows(generateRows(min, max));
                                 }}
                             >
                                 Generate maths fun!
