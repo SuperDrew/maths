@@ -1,5 +1,10 @@
 import { generateRows, randBetween } from './Generator';
 import * as fc from 'fast-check';
+import { Operations } from './Operations';
+
+const pickOperation = (operations: Operations[]) => {
+    return operations[Math.floor(Math.random() * operations.length)];
+};
 
 describe('Generator', () => {
     it('should generate a random number <= min and <= max', () => {
@@ -18,8 +23,8 @@ describe('Generator', () => {
             fc.property(fc.nat(100), fc.nat(100), (nat1, nat2) => {
                 const expectedNumberOfRows = 10;
                 const min = nat1;
-                const max = nat1 + nat2;
-                const rows = generateRows(min, max, expectedNumberOfRows, true);
+                const numberBond = nat1 + nat2;
+                const rows = generateRows({ min, numberBond, useAddition: true }, expectedNumberOfRows);
                 expect(rows).toHaveLength(expectedNumberOfRows);
             })
         );

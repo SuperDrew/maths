@@ -1,9 +1,14 @@
-export const randBetween = (min: number, max: number) => {
+//TODO pull out numerical random generation into a different class to separate it from the string manipulation
+
+const randBetween = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
 };
 
-const generateRandomAdditionSum = (min: number, max: number) => {
-    return `${randBetween(min, max)} + ${randBetween(min, max)} = ___`;
+const generateRandomAdditionSum = (generateProps: GenerateProps) => {
+    return `${randBetween(generateProps.min, generateProps.numberBond)} + ${randBetween(
+        generateProps.min,
+        generateProps.numberBond
+    )} = ___`;
 };
 
 export interface Row {
@@ -11,26 +16,30 @@ export interface Row {
     sums: string[];
 }
 
-const generateSums = (min: number, numberBond: number) => [
-    generateRandomAdditionSum(min, numberBond),
-    generateRandomAdditionSum(min, numberBond),
-    generateRandomAdditionSum(min, numberBond),
+const generateSums = (generateProps: GenerateProps) => [
+    generateRandomAdditionSum(generateProps),
+    generateRandomAdditionSum(generateProps),
+    generateRandomAdditionSum(generateProps),
 ];
 
-const generateRow = (min: number, numberBond: number, rowNumber: number): Row => ({
+const generateRow = (generateProps: GenerateProps, rowNumber: number): Row => ({
     key: rowNumber,
-    sums: generateSums(min, numberBond),
+    sums: generateSums(generateProps),
 });
 
-export const generateRows = (
-    min: number,
-    numberBond: number,
-    expectedNumberOfRows: number,
-    _useAddition: boolean
-): Row[] => {
+interface GenerateProps {
+    min: number;
+    numberBond: number;
+    useAddition: boolean;
+}
+
+const generateRows = (generateProps: GenerateProps, expectedNumberOfRows: number): Row[] => {
     const rows = [];
     for (let i = 0; i < expectedNumberOfRows; i++) {
-        rows.push(generateRow(min, numberBond, i));
+        rows.push(generateRow(generateProps, i));
     }
     return rows;
 };
+
+export type { GenerateProps };
+export { generateRows, randBetween };
