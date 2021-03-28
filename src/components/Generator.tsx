@@ -6,7 +6,7 @@ const generateRandomAdditionSum = (min: number, max: number) => {
     return `${randBetween(min, max)} + ${randBetween(min, max)} = ___`;
 };
 
-interface Row {
+export interface Row {
     key: number;
     sum1: string;
     sum2: string;

@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableRow, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Row } from './Generator';
 
 const useStyles = makeStyles(() => ({
     table: {
@@ -8,7 +9,12 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export const QuestionTable = (props) => {
+interface QuestionTableProps {
+    label: string;
+    rows: Row[];
+}
+
+export const QuestionTable = (props: QuestionTableProps) => {
     const classes = useStyles();
     return (
         <>
