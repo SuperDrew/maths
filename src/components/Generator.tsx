@@ -11,13 +11,15 @@ export interface Row {
     sums: string[];
 }
 
+const createSums = (min: number, numberBond: number) => [
+    generateRandomAdditionSum(min, numberBond),
+    generateRandomAdditionSum(min, numberBond),
+    generateRandomAdditionSum(min, numberBond),
+];
+
 const createRow = (min: number, numberBond: number, rowNumber: number): Row => ({
     key: rowNumber,
-    sums: [
-        generateRandomAdditionSum(min, numberBond),
-        generateRandomAdditionSum(min, numberBond),
-        generateRandomAdditionSum(min, numberBond),
-    ],
+    sums: createSums(min, numberBond),
 });
 
 export const generateRows = (min: number, numberBond: number, _useAddition: boolean): Row[] => {
