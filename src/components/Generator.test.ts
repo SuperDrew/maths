@@ -19,7 +19,7 @@ describe('Generator', () => {
                 const expectedNumberOfRows = 10;
                 const min = nat1;
                 const max = nat1 + nat2;
-                const rows = generateRows(min, max, true, expectedNumberOfRows);
+                const rows = generateRows(min, max, expectedNumberOfRows, true);
                 expect(rows).toHaveLength(expectedNumberOfRows);
             })
         );

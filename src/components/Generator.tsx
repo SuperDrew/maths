@@ -25,8 +25,8 @@ const generateRow = (min: number, numberBond: number, rowNumber: number): Row =>
 export const generateRows = (
     min: number,
     numberBond: number,
-    _useAddition: boolean,
-    expectedNumberOfRows: number
+    expectedNumberOfRows: number,
+    _useAddition: boolean
 ): Row[] => {
     const rows = [];
     for (let i = 0; i < expectedNumberOfRows; i++) {
