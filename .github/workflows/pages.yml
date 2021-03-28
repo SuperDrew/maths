@@ -23,6 +23,12 @@ jobs:
           npm run build
         env:
           CI: true
+      - name: run tests
+        run: |
+          npm i
+          npm run test
+        env:
+          CI: true
       - name: Deploy to pages
         if: success()
         uses: peaceiris/actions-gh-pages@v2
