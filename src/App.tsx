@@ -105,7 +105,9 @@ function App() {
                         </Grid>
                     </Grid>
                     <Grid item>
-                        <QuestionTable label="Questions" rows={rows} />
+                        <Paper>
+                            <QuestionTable label="Worksheet" rows={rows} />
+                        </Paper>
                     </Grid>
                 </Grid>
             </Container>
