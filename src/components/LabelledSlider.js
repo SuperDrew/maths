@@ -19,6 +19,11 @@ export const LabelledSlider = (props) =>
                 min={0}
                 max={props.max}
                 marks={marks}
+                onChange={
+                        (event, value) => {
+                            props.onChange(value)
+                    }
+                }
             />
         </>
     )
