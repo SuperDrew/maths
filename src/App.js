@@ -22,23 +22,26 @@ function App() {
   const updateMin = (changedMin) => {
     setMin(changedMin);
   };
+
   const updateMax = (changedMax) => {
     setMax(changedMax);
   };
-  function randBetween(min, max) {
+
+  const randBetween = (min, max) => {
     return Math.round(Math.random() * (max - min) + min);
-  }
-  function generateRandomAdditionSum(min, max) {
+  };
+
+  const generateRandomAdditionSum = (min, max) => {
     return `${randBetween(min, max)} + ${randBetween(min, max)} = ___`;
-  }
-  function createRow(min, max, rowNumber) {
-    return {
-      key: rowNumber,
-      sum1: generateRandomAdditionSum(min, max),
-      sum2: generateRandomAdditionSum(min, max),
-      sum3: generateRandomAdditionSum(min, max),
-    };
-  }
+  };
+
+  const createRow = (min, max, rowNumber) => ({
+    key: rowNumber,
+    sum1: generateRandomAdditionSum(min, max),
+    sum2: generateRandomAdditionSum(min, max),
+    sum3: generateRandomAdditionSum(min, max),
+  });
+
   const generateRows = (min, max) => {
     const rows = [];
     for (let i = 0; i <= 10; i++) {
@@ -46,6 +49,7 @@ function App() {
     }
     setRows(rows);
   };
+
   useEffect(() => {
     generateRows(min, max);
   }, [min, max]);
