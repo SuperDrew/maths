@@ -27,19 +27,22 @@ function App() {
     const min = 0;
     const [numberBond, setNumberBond] = useState(10);
     const [useAddition, setUseAddition] = useState(true);
+    const [useSubtraction, setUseSubtraction] = useState(false);
     const [rows, setRows] = useState(generateRows(min, numberBond, useAddition));
 
     const updateNumberBond = (changedNumberBond: number) => {
         setNumberBond(changedNumberBond);
     };
-
     const updateAdditionUse = (additionUse: boolean) => {
         setUseAddition(additionUse);
+    };
+    const updateSubtractionUse = (subtractionUse: boolean) => {
+        setUseSubtraction(subtractionUse);
     };
 
     useEffect(() => {
         setRows(generateRows(min, numberBond, useAddition));
-    }, [min, numberBond, useAddition]);
+    }, [min, numberBond, useAddition, useSubtraction]);
 
     return (
         <div className="App">
@@ -77,7 +80,12 @@ function App() {
                         </Grid>
                         <Grid item>
                             <Paper className={classes.control}>
-                                <LabelledCheckBox name="subtraction" color="primary" />
+                                <LabelledCheckBox
+                                    name="subtraction"
+                                    color="primary"
+                                    value={useSubtraction}
+                                    onChange={updateSubtractionUse}
+                                />
                             </Paper>
                         </Grid>
                     </Grid>
