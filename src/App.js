@@ -6,7 +6,7 @@ import { LabelledSlider } from './components/LabelledSlider';
 import { LabelledCheckBox } from './components/LabelledCheckBox';
 import { QuestionTable } from './components/QuestionTable';
 import { makeStyles, withStyles } from '@material-ui/styles';
-import { generateRows } from './Generator';
+import { generateRows } from './components/Generator';
 
 const GlobalCss = withStyles({
     '@global': {
