@@ -8,16 +8,16 @@ const generateRandomAdditionSum = (min: number, max: number) => {
 
 export interface Row {
     key: number;
-    sum1: string;
-    sum2: string;
-    sum3: string;
+    sums: string[];
 }
 
 const createRow = (min: number, numberBond: number, rowNumber: number): Row => ({
     key: rowNumber,
-    sum1: generateRandomAdditionSum(min, numberBond),
-    sum2: generateRandomAdditionSum(min, numberBond),
-    sum3: generateRandomAdditionSum(min, numberBond),
+    sums: [
+        generateRandomAdditionSum(min, numberBond),
+        generateRandomAdditionSum(min, numberBond),
+        generateRandomAdditionSum(min, numberBond),
+    ],
 });
 
 export const generateRows = (min: number, numberBond: number, _useAddition: boolean): Row[] => {
