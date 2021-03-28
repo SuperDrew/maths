@@ -5,7 +5,7 @@ import { Container, Grid, Icon, Paper, Typography } from '@material-ui/core';
 import { LabelledSlider } from './components/LabelledSlider';
 import { LabelledCheckBox } from './components/LabelledCheckBox';
 import { QuestionTable } from './components/QuestionTable';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles, withStyles } from '@material-ui/styles';
 
 const GlobalCss = withStyles({
     '@global': {
@@ -15,7 +15,14 @@ const GlobalCss = withStyles({
     },
 })(() => null);
 
+const useStyles = makeStyles(() => ({
+    control: {
+        padding: 10,
+    },
+}));
+
 function App() {
+    const classes = useStyles();
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10);
     const [rows, setRows] = useState([]);
@@ -65,7 +72,7 @@ function App() {
             <Container maxWidth="sm">
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Paper>
+                        <Paper className={classes.control}>
                             <Grid item>
                                 <LabelledSlider
                                     label="minimum"
@@ -75,6 +82,8 @@ function App() {
                                     onChange={updateMin}
                                 />
                             </Grid>
+                        </Paper>
+                        <Paper className={classes.control}>
                             <Grid item>
                                 <LabelledSlider
                                     label="maximum"
@@ -88,18 +97,19 @@ function App() {
                     </Grid>
                     <Grid container direction="row" justify="center" spacing={2}>
                         <Grid item>
-                            <Paper>
+                            <Paper className={classes.control}>
                                 <LabelledCheckBox name="addition" color="primary" />
                             </Paper>
                         </Grid>
                         <Grid item>
-                            <Paper>
+                            <Paper className={classes.control}>
                                 <LabelledCheckBox name="subtraction" color="primary" />
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Grid item justify="center" spacing={1}>
-                        <Paper>
+                    <Grid item />
+                    <Grid container direction="row" justify="center" spacing={2}>
+                        <Grid item>
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -110,9 +120,9 @@ function App() {
                             >
                                 Generate maths fun!
                             </Button>
-                        </Paper>
+                        </Grid>
                     </Grid>
-                    <Grid>
+                    <Grid item>
                         <QuestionTable label="Questions" rows={rows} />
                     </Grid>
                 </Grid>
