@@ -27,13 +27,13 @@ function App() {
     const min = 0;
     const [numberBond, setNumberBond] = useState(10);
     const [useAddition, setUseAddition] = useState(true);
-    const [rows, setRows] = useState([]);
+    const [rows, setRows] = useState(generateRows(min, numberBond, useAddition));
 
-    const updateNumberBond = (changedNumberBond) => {
+    const updateNumberBond = (changedNumberBond: number) => {
         setNumberBond(changedNumberBond);
     };
 
-    const updateAdditionUse = (additionUse) => {
+    const updateAdditionUse = (additionUse: boolean) => {
         setUseAddition(additionUse);
     };
 

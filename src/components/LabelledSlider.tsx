@@ -1,7 +1,15 @@
 import { Slider, Typography } from '@material-ui/core';
 import React from 'react';
 
-export const LabelledSlider = (props) => {
+interface LabelledSliderProps {
+    max: number;
+    label: string;
+    value: number;
+    step: number;
+    onChange(amount: number): void;
+}
+
+export const LabelledSlider = (props: LabelledSliderProps) => {
     const marks = [...Array(props.max + 1).keys()].map((value) => ({ value: value, label: value.toString() }));
 
     return (
@@ -19,7 +27,7 @@ export const LabelledSlider = (props) => {
                 max={props.max}
                 marks={marks}
                 onChange={(event, value) => {
-                    props.onChange(value);
+                    props.onChange(value as number);
                 }}
             />
         </>
