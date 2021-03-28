@@ -11,6 +11,7 @@ import { generateRows } from './components/Generator';
 const GlobalCss = withStyles({
     '@global': {
         'html, body': {
+            // TODO how do I use the theme for this color? backgroundColor: theme.palette.background.paper
             backgroundColor: '#f5f5f5',
         },
     },
