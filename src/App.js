@@ -25,16 +25,16 @@ const useStyles = makeStyles(() => ({
 function App() {
     const classes = useStyles();
     const min = 0;
-    const [max, setMax] = useState(10);
+    const [numberBond, setNumberBond] = useState(10);
     const [rows, setRows] = useState([]);
 
-    const updateMax = (changedMax) => {
-        setMax(changedMax);
+    const updateNumberBond = (changedNumberBond) => {
+        setNumberBond(changedNumberBond);
     };
 
     useEffect(() => {
-        setRows(generateRows(min, max));
-    }, [min, max]);
+        setRows(generateRows(min, numberBond));
+    }, [min, numberBond]);
 
     return (
         <div className="App">
@@ -50,11 +50,11 @@ function App() {
                         <Paper className={classes.control}>
                             <Grid item>
                                 <LabelledSlider
-                                    label="maximum"
+                                    label="Number Bond"
                                     max={10}
-                                    defaultValue={max}
+                                    defaultValue={numberBond}
                                     step={1}
-                                    onChange={updateMax}
+                                    onChange={updateNumberBond}
                                 />
                             </Grid>
                         </Paper>
@@ -79,7 +79,7 @@ function App() {
                                 color="primary"
                                 endIcon={<Icon>send</Icon>}
                                 onClick={() => {
-                                    setRows(generateRows(min, max));
+                                    setRows(generateRows(min, numberBond));
                                 }}
                             >
                                 Generate maths fun!
