@@ -1,5 +1,11 @@
 //TODO pull out numerical random generation into a different class to separate it from the string manipulation
 
+import { Operations } from './Operations';
+
+const pickOperation = (operations: Operations[]) => {
+    return operations[Math.floor(Math.random() * operations.length)];
+};
+
 const randBetween = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
 };
@@ -42,4 +48,4 @@ const generateRows = (generateProps: GenerateProps, expectedNumberOfRows: number
 };
 
 export type { GenerateProps };
-export { generateRows, randBetween };
+export { generateRows, randBetween, pickOperation };

@@ -1,10 +1,6 @@
-import { generateRows, randBetween } from './Generator';
+import { generateRows, pickOperation, randBetween } from './Generator';
 import * as fc from 'fast-check';
 import { Operations } from './Operations';
-
-const pickOperation = (operations: Operations[]) => {
-    return operations[Math.floor(Math.random() * operations.length)];
-};
 
 describe('Generator', () => {
     it('should generate a random number <= min and <= max', () => {
@@ -28,5 +24,11 @@ describe('Generator', () => {
                 expect(rows).toHaveLength(expectedNumberOfRows);
             })
         );
+    });
+
+    it('should pick a random operation from the selected operations', () => {
+        const operations = [Operations.Addition, Operations.Subtraction];
+        const operation = pickOperation(operations);
+        expect(operations).toContain(operation);
     });
 });
