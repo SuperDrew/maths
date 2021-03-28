@@ -22,7 +22,7 @@ const createRow = (min: number, numberBond: number, rowNumber: number): Row => (
 
 export const generateRows = (min: number, numberBond: number, _useAddition: boolean): Row[] => {
     const rows = [];
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i < 10; i++) {
         rows.push(createRow(min, numberBond, i));
     }
     return rows;
