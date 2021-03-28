@@ -16,10 +16,11 @@ describe('Generator', () => {
     it('should generate 10 rows', () => {
         fc.assert(
             fc.property(fc.nat(100), fc.nat(100), (nat1, nat2) => {
+                const expectedNumberOfRows = 10;
                 const min = nat1;
                 const max = nat1 + nat2;
-                const rows = generateRows(min, max, true);
-                expect(rows).toHaveLength(10);
+                const rows = generateRows(min, max, true, expectedNumberOfRows);
+                expect(rows).toHaveLength(expectedNumberOfRows);
             })
         );
     });

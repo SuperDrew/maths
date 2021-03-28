@@ -22,9 +22,14 @@ const generateRow = (min: number, numberBond: number, rowNumber: number): Row =>
     sums: generateSums(min, numberBond),
 });
 
-export const generateRows = (min: number, numberBond: number, _useAddition: boolean): Row[] => {
+export const generateRows = (
+    min: number,
+    numberBond: number,
+    _useAddition: boolean,
+    expectedNumberOfRows: number
+): Row[] => {
     const rows = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < expectedNumberOfRows; i++) {
         rows.push(generateRow(min, numberBond, i));
     }
     return rows;
