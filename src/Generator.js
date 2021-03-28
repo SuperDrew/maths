@@ -13,7 +13,7 @@ const createRow = (min, max, rowNumber) => ({
     sum3: generateRandomAdditionSum(min, max),
 });
 
-export const generateRows = (min, max) => {
+export const generateRows = (min, max, useAddition) => {
     const rows = [];
     for (let i = 0; i <= 10; i++) {
         rows.push(createRow(min, max, i));

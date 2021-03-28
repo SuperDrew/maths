@@ -26,15 +26,22 @@ function App() {
     const classes = useStyles();
     const min = 0;
     const [numberBond, setNumberBond] = useState(10);
+    const [useAddition, setUseAddition] = useState(true);
     const [rows, setRows] = useState([]);
 
     const updateNumberBond = (changedNumberBond) => {
         setNumberBond(changedNumberBond);
     };
 
+    const updateAdditionUse = (additionUse) => {
+        // TODO this gives the incorrect value the first click
+        console.log(`useAddition was ${useAddition}`);
+        setUseAddition(additionUse);
+    };
+
     useEffect(() => {
-        setRows(generateRows(min, numberBond));
-    }, [min, numberBond]);
+        setRows(generateRows(min, numberBond, useAddition));
+    }, [min, numberBond, useAddition]);
 
     return (
         <div className="App">
@@ -62,7 +69,12 @@ function App() {
                     <Grid container direction="row" justify="center" spacing={2}>
                         <Grid item>
                             <Paper className={classes.control}>
-                                <LabelledCheckBox name="addition" color="primary" />
+                                <LabelledCheckBox
+                                    name="addition"
+                                    color="primary"
+                                    defaultChecked={true}
+                                    onChange={updateAdditionUse}
+                                />
                             </Paper>
                         </Grid>
                         <Grid item>
@@ -79,7 +91,7 @@ function App() {
                                 color="primary"
                                 endIcon={<Icon>send</Icon>}
                                 onClick={() => {
-                                    setRows(generateRows(min, numberBond));
+                                    setRows(generateRows(min, numberBond, useAddition));
                                 }}
                             >
                                 Generate maths fun!
