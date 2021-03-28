@@ -1,7 +1,13 @@
 import React from 'react';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { Checkbox, CheckboxProps, FormControlLabel } from '@material-ui/core';
 
-export const LabelledCheckBox = (props) => {
+interface LabelledCheckBoxProps {
+    name: string;
+    color: CheckboxProps['color'];
+    value: boolean;
+    onChange(checked: boolean): void;
+}
+export const LabelledCheckBox = (props: LabelledCheckBoxProps) => {
     return (
         <>
             <FormControlLabel

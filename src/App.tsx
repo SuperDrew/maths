@@ -11,6 +11,7 @@ import { generateRows } from './components/Generator';
 const GlobalCss = withStyles({
     '@global': {
         'html, body': {
+            // TODO how do I use the theme for this color? backgroundColor: theme.palette.background.paper
             backgroundColor: '#f5f5f5',
         },
     },
@@ -27,19 +28,22 @@ function App() {
     const min = 0;
     const [numberBond, setNumberBond] = useState(10);
     const [useAddition, setUseAddition] = useState(true);
-    const [rows, setRows] = useState([]);
+    const [useSubtraction, setUseSubtraction] = useState(false);
+    const [rows, setRows] = useState(generateRows(min, numberBond, useAddition));
 
-    const updateNumberBond = (changedNumberBond) => {
+    const updateNumberBond = (changedNumberBond: number) => {
         setNumberBond(changedNumberBond);
     };
-
-    const updateAdditionUse = (additionUse) => {
+    const updateAdditionUse = (additionUse: boolean) => {
         setUseAddition(additionUse);
+    };
+    const updateSubtractionUse = (subtractionUse: boolean) => {
+        setUseSubtraction(subtractionUse);
     };
 
     useEffect(() => {
         setRows(generateRows(min, numberBond, useAddition));
-    }, [min, numberBond, useAddition]);
+    }, [min, numberBond, useAddition, useSubtraction]);
 
     return (
         <div className="App">
@@ -77,7 +81,12 @@ function App() {
                         </Grid>
                         <Grid item>
                             <Paper className={classes.control}>
-                                <LabelledCheckBox name="subtraction" color="primary" />
+                                <LabelledCheckBox
+                                    name="subtraction"
+                                    color="primary"
+                                    value={useSubtraction}
+                                    onChange={updateSubtractionUse}
+                                />
                             </Paper>
                         </Grid>
                     </Grid>
@@ -97,7 +106,9 @@ function App() {
                         </Grid>
                     </Grid>
                     <Grid item>
-                        <QuestionTable label="Questions" rows={rows} />
+                        <Paper>
+                            <QuestionTable label="Worksheet" rows={rows} />
+                        </Paper>
                     </Grid>
                 </Grid>
             </Container>
