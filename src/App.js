@@ -34,8 +34,6 @@ function App() {
     };
 
     const updateAdditionUse = (additionUse) => {
-        // TODO this gives the incorrect value the first click
-        console.log(`useAddition was ${useAddition}`);
         setUseAddition(additionUse);
     };
 
@@ -59,7 +57,7 @@ function App() {
                                 <LabelledSlider
                                     label="Number Bond"
                                     max={10}
-                                    defaultValue={numberBond}
+                                    value={numberBond}
                                     step={1}
                                     onChange={updateNumberBond}
                                 />
@@ -72,7 +70,7 @@ function App() {
                                 <LabelledCheckBox
                                     name="addition"
                                     color="primary"
-                                    defaultChecked={true}
+                                    value={useAddition}
                                     onChange={updateAdditionUse}
                                 />
                             </Paper>
