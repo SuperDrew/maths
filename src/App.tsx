@@ -48,7 +48,7 @@ function App() {
     return (
         <div className="App">
             <GlobalCss />
-            <header className="App-header">
+            <header className="App-header" data-testid="header">
                 <Typography variant="h1" align="center">
                     Maths
                 </Typography>
