@@ -60,7 +60,7 @@ function App() {
                         <Paper className={classes.control}>
                             <Grid item>
                                 <LabelledSlider
-                                    label="Number Bond"
+                                    label="Number Bonds"
                                     max={10}
                                     value={numberBond}
                                     step={1}
