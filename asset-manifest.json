@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/mathss/static/css/main.2fc61f3f.chunk.css",
-    "main.js": "/mathss/static/js/main.feddea5a.chunk.js",
-    "main.js.map": "/mathss/static/js/main.feddea5a.chunk.js.map",
+    "main.js": "/mathss/static/js/main.9185baee.chunk.js",
+    "main.js.map": "/mathss/static/js/main.9185baee.chunk.js.map",
     "runtime-main.js": "/mathss/static/js/runtime-main.96ac1c09.js",
     "runtime-main.js.map": "/mathss/static/js/runtime-main.96ac1c09.js.map",
     "static/css/2.cc0d69ce.chunk.css": "/mathss/static/css/2.cc0d69ce.chunk.css",
-    "static/js/2.9848c9e5.chunk.js": "/mathss/static/js/2.9848c9e5.chunk.js",
-    "static/js/2.9848c9e5.chunk.js.map": "/mathss/static/js/2.9848c9e5.chunk.js.map",
+    "static/js/2.1ecdc403.chunk.js": "/mathss/static/js/2.1ecdc403.chunk.js",
+    "static/js/2.1ecdc403.chunk.js.map": "/mathss/static/js/2.1ecdc403.chunk.js.map",
     "index.html": "/mathss/index.html",
-    "precache-manifest.73e75944eb3e9849def897c13a8586d8.js": "/mathss/precache-manifest.73e75944eb3e9849def897c13a8586d8.js",
+    "precache-manifest.8e72994743555d1ca15ce22dc9c94693.js": "/mathss/precache-manifest.8e72994743555d1ca15ce22dc9c94693.js",
     "service-worker.js": "/mathss/service-worker.js",
     "static/css/2.cc0d69ce.chunk.css.map": "/mathss/static/css/2.cc0d69ce.chunk.css.map",
     "static/css/main.2fc61f3f.chunk.css.map": "/mathss/static/css/main.2fc61f3f.chunk.css.map",
-    "static/js/2.9848c9e5.chunk.js.LICENSE.txt": "/mathss/static/js/2.9848c9e5.chunk.js.LICENSE.txt",
+    "static/js/2.1ecdc403.chunk.js.LICENSE.txt": "/mathss/static/js/2.1ecdc403.chunk.js.LICENSE.txt",
     "static/media/index.css": "/mathss/static/media/roboto-vietnamese-400-normal.a8be5b46.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.96ac1c09.js",
     "static/css/2.cc0d69ce.chunk.css",
-    "static/js/2.9848c9e5.chunk.js",
+    "static/js/2.1ecdc403.chunk.js",
     "static/css/main.2fc61f3f.chunk.css",
-    "static/js/main.feddea5a.chunk.js"
+    "static/js/main.9185baee.chunk.js"
   ]
 }
