@@ -1,29 +1,63 @@
+//TODO pull out numerical random generation into a different class to separate it from the string manipulation
+
+import { Operations } from './Operations';
+
+const pickOperation = (operations: Operations[]) => {
+    return operations[Math.floor(Math.random() * operations.length)];
+};
+
 const randBetween = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
 };
 
-const generateRandomAdditionSum = (min: number, max: number) => {
-    return `${randBetween(min, max)} + ${randBetween(min, max)} = ___`;
+const generateRandomSum = (generateProps: GenerateProps) => {
+    // a +/- b = x
+    const a = randBetween(generateProps.min, generateProps.numberBond);
+    const operations = [];
+    if (generateProps.useAddition) {
+        operations.push(Operations.Addition);
+    }
+    if (generateProps.useSubtraction) {
+        operations.push(Operations.Subtraction);
+    }
+    const operation = pickOperation(operations);
+    const b =
+        operation === Operations.Addition
+            ? randBetween(generateProps.min, generateProps.numberBond - a)
+            : randBetween(0, a);
+    return `${a} ${operation} ${b} = ___`;
 };
 
 export interface Row {
     key: number;
-    sum1: string;
-    sum2: string;
-    sum3: string;
+    sums: string[];
 }
 
-const createRow = (min: number, numberBond: number, rowNumber: number): Row => ({
+const generateSums = (generateProps: GenerateProps) => [
+    generateRandomSum(generateProps),
+    generateRandomSum(generateProps),
+    generateRandomSum(generateProps),
+];
+
+const generateRow = (generateProps: GenerateProps, rowNumber: number): Row => ({
     key: rowNumber,
-    sum1: generateRandomAdditionSum(min, numberBond),
-    sum2: generateRandomAdditionSum(min, numberBond),
-    sum3: generateRandomAdditionSum(min, numberBond),
+    sums: generateSums(generateProps),
 });
 
-export const generateRows = (min: number, numberBond: number, _useAddition: boolean): Row[] => {
+interface GenerateProps {
+    min: number;
+    numberBond: number;
+    useAddition: boolean;
+    useSubtraction: boolean;
+}
+
+const generateRows = (generateProps: GenerateProps, expectedNumberOfRows: number): Row[] => {
     const rows = [];
-    for (let i = 0; i <= 10; i++) {
-        rows.push(createRow(min, numberBond, i));
+    for (let i = 0; i < expectedNumberOfRows; i++) {
+        rows.push(generateRow(generateProps, i));
     }
     return rows;
 };
+
+export type { GenerateProps };
+export { generateRows, randBetween, pickOperation };

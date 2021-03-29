@@ -11,10 +11,10 @@ export const LabelledCheckBox = (props: LabelledCheckBoxProps) => {
     return (
         <>
             <FormControlLabel
-                control={<Checkbox name={props.name} color={props.color} value={props.value} />}
+                control={<Checkbox name={props.name} color={props.color} checked={props.value} />}
                 label={props.name}
                 labelPlacement="start"
-                onChange={(event, checked) => props.onChange(!checked)}
+                onChange={(event, checked) => props.onChange(checked)}
             />
         </>
     );

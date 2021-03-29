@@ -25,9 +25,9 @@ export const QuestionTable = (props: QuestionTableProps) => {
                 <TableBody>
                     {props.rows.map((row) => (
                         <TableRow key={row.key}>
-                            <TableCell align="center">{row.sum1}</TableCell>
-                            <TableCell align="center">{row.sum2}</TableCell>
-                            <TableCell align="center">{row.sum3}</TableCell>
+                            <TableCell align="center">{row.sums[0]}</TableCell>
+                            <TableCell align="center">{row.sums[1]}</TableCell>
+                            <TableCell align="center">{row.sums[2]}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
