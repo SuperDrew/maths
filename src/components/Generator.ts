@@ -1,5 +1,3 @@
-//TODO pull out numerical random generation into a different class to separate it from the string manipulation
-
 import { generateAPlusOrMinusBEqualsX } from './OperandsGenerator';
 
 const generateRandomSum = (generateProps: GenerateProps) => {
