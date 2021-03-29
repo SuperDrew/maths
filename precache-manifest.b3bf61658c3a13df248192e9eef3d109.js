@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "81cfe3165d639469dc36cd4ff9cfa413",
+    "revision": "42ebec19fe9281080cd69c0ea3face92",
     "url": "/mathss/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathss/static/css/2.cc0d69ce.chunk.css"
   },
   {
-    "revision": "08b8a30c8e82b9a05d93",
+    "revision": "f97c40b8839c7b15cf92",
     "url": "/mathss/static/css/main.2fc61f3f.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathss/static/js/2.9848c9e5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "08b8a30c8e82b9a05d93",
-    "url": "/mathss/static/js/main.b26468bd.chunk.js"
+    "revision": "f97c40b8839c7b15cf92",
+    "url": "/mathss/static/js/main.434dfd2f.chunk.js"
   },
   {
     "revision": "021a768c8969a89164ef",
