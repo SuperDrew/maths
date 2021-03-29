@@ -55,8 +55,14 @@ describe('Generator', () => {
     });
 
     it('should pick a random operation from the selected operations', () => {
-        const operations = [Operations.Addition, Operations.Subtraction];
-        const operation = pickOperation(operations);
-        expect(operation).toBeInArray(operations);
+        fc.assert(
+            fc.property(
+                fc.set(fc.constantFrom(Operations.Addition, Operations.Subtraction), { minLength: 1, maxLength: 2 }),
+                (operations) => {
+                    const operation = pickOperation(operations);
+                    expect(operation).toBeInArray(operations);
+                }
+            )
+        );
     });
 });
