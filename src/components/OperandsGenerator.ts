@@ -19,7 +19,7 @@ const randBetween = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
 };
 
-const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps) => {
+const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands => {
     const a = randBetween(generateProps.min, generateProps.numberBond);
     const operations = [];
     if (generateProps.useAddition) {
