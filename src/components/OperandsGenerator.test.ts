@@ -68,16 +68,20 @@ describe('OperandsGenerator', () => {
     });
 
     describe('when exact number bonds are used', () => {
-        it('should generate sums that are equal to the number bond selected', () => {
+        //TODO write test for subtraction
+        it('should generate sums that are equal to the number bond selected when using addition', () => {
             fc.assert(
-                fc.property(fc.integer(0, 5), fc.integer(0, 10), (int1, int2) => {
-                    const numberBond = int1 + int2;
+                fc.property(fc.integer(0, 10), (numberBond) => {
                     const operands = generateAPlusOrMinusBEqualsX({
-                        min: int1,
+                        min: 0,
                         numberBond: numberBond,
                         useAddition: true,
-                        useSubtraction: true,
+                        useSubtraction: false,
+                        useExactNumberBonds: true,
                     });
+                    console.log(
+                        `operands: a: ${operands.a}, operation: ${operands.operation}, b: ${operands.b}, numberBond: ${numberBond}`
+                    );
                     expect(evaluateOperandsForExactNumberBond(operands, numberBond)).toBe(true);
                 })
             );

@@ -26,6 +26,7 @@ interface GenerateProps {
     numberBond: number;
     useAddition: boolean;
     useSubtraction: boolean;
+    useExactNumberBonds?: boolean;
 }
 
 const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[] => {

@@ -28,12 +28,18 @@ function App() {
     const min = 0;
     const numberOfRows = 10;
     const [numberBond, setNumberBond] = useState(10);
+    const [useExactNumberBonds, setUseExactNumberBonds] = useState(true);
     const [useAddition, setUseAddition] = useState(true);
     const [useSubtraction, setUseSubtraction] = useState(true);
-    const [rows, setRows] = useState(generateRows({ min, numberBond, useAddition, useSubtraction }, numberOfRows));
+    const [rows, setRows] = useState(
+        generateRows({ min, numberBond, useAddition, useSubtraction, useExactNumberBonds }, numberOfRows)
+    );
 
     const updateNumberBond = (changedNumberBond: number) => {
         setNumberBond(changedNumberBond);
+    };
+    const updateUseExactNumberBonds = (exactNumberBondsUse: boolean) => {
+        setUseExactNumberBonds(exactNumberBondsUse);
     };
     const updateAdditionUse = (additionUse: boolean) => {
         setUseAddition(additionUse);
@@ -43,8 +49,8 @@ function App() {
     };
 
     useEffect(() => {
-        setRows(generateRows({ min, numberBond, useAddition, useSubtraction }, numberOfRows));
-    }, [min, numberBond, useAddition, useSubtraction]);
+        setRows(generateRows({ min, numberBond, useAddition, useSubtraction, useExactNumberBonds }, numberOfRows));
+    }, [min, numberBond, useAddition, useSubtraction, useExactNumberBonds]);
 
     return (
         <div className="App">
@@ -65,6 +71,14 @@ function App() {
                                     value={numberBond}
                                     step={1}
                                     onChange={updateNumberBond}
+                                />
+                            </Grid>
+                            <Grid item>
+                                <LabelledCheckBox
+                                    name="exactNumberBonds"
+                                    color="primary"
+                                    value={useExactNumberBonds}
+                                    onChange={updateUseExactNumberBonds}
                                 />
                             </Grid>
                         </Paper>
@@ -100,7 +114,10 @@ function App() {
                                 endIcon={<Icon>send</Icon>}
                                 onClick={() => {
                                     setRows(
-                                        generateRows({ min, numberBond, useAddition, useSubtraction }, numberOfRows)
+                                        generateRows(
+                                            { min, numberBond, useAddition, useSubtraction, useExactNumberBonds },
+                                            numberOfRows
+                                        )
                                     );
                                 }}
                             >

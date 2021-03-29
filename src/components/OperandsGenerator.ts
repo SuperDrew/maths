@@ -31,6 +31,20 @@ function createOperations(generateProps: GenerateProps) {
 }
 
 const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands => {
+    if (generateProps.useExactNumberBonds) {
+        const operation = pickOperation(createOperations(generateProps));
+        if (operation === Operations.Subtraction) {
+            const a = generateProps.numberBond;
+            const b = randBetween(generateProps.min, generateProps.numberBond);
+            return { a, operation, b, x: '___' };
+        }
+        if (operation === Operations.Addition) {
+            const a = randBetween(generateProps.min, generateProps.numberBond);
+            const b = generateProps.numberBond - a;
+            return { a, operation, b, x: '___' };
+        }
+        throw Error(`operation not implemented yet: ${operation}`);
+    }
     const a = randBetween(generateProps.min, generateProps.numberBond);
     const operation = pickOperation(createOperations(generateProps));
     const b =
