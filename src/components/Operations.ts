@@ -1,4 +1,4 @@
 export enum Operations {
-    Addition,
-    Subtraction,
+    Addition = '+',
+    Subtraction = '-',
 }

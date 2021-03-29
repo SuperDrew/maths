@@ -10,11 +10,15 @@ const randBetween = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
 };
 
-const generateRandomAdditionSum = (generateProps: GenerateProps) => {
-    return `${randBetween(generateProps.min, generateProps.numberBond)} + ${randBetween(
-        generateProps.min,
-        generateProps.numberBond
-    )} = ___`;
+const generateRandomSum = (generateProps: GenerateProps) => {
+    // a +/- b = x
+    const a = randBetween(generateProps.min, generateProps.numberBond);
+    const operation = pickOperation([Operations.Addition, Operations.Subtraction]);
+    const b =
+        operation == Operations.Addition
+            ? randBetween(generateProps.min, generateProps.numberBond - a)
+            : randBetween(0, a);
+    return `${a} ${operation} ${b} = ___`;
 };
 
 export interface Row {
@@ -23,9 +27,9 @@ export interface Row {
 }
 
 const generateSums = (generateProps: GenerateProps) => [
-    generateRandomAdditionSum(generateProps),
-    generateRandomAdditionSum(generateProps),
-    generateRandomAdditionSum(generateProps),
+    generateRandomSum(generateProps),
+    generateRandomSum(generateProps),
+    generateRandomSum(generateProps),
 ];
 
 const generateRow = (generateProps: GenerateProps, rowNumber: number): Row => ({
@@ -37,6 +41,7 @@ interface GenerateProps {
     min: number;
     numberBond: number;
     useAddition: boolean;
+    useSubtraction: boolean;
 }
 
 const generateRows = (generateProps: GenerateProps, expectedNumberOfRows: number): Row[] => {

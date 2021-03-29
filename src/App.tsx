@@ -29,8 +29,8 @@ function App() {
     const numberOfRows = 10;
     const [numberBond, setNumberBond] = useState(10);
     const [useAddition, setUseAddition] = useState(true);
-    const [useSubtraction, setUseSubtraction] = useState(false);
-    const [rows, setRows] = useState(generateRows({ min, numberBond, useAddition }, numberOfRows));
+    const [useSubtraction, setUseSubtraction] = useState(true);
+    const [rows, setRows] = useState(generateRows({ min, numberBond, useAddition, useSubtraction }, numberOfRows));
 
     const updateNumberBond = (changedNumberBond: number) => {
         setNumberBond(changedNumberBond);
@@ -43,7 +43,7 @@ function App() {
     };
 
     useEffect(() => {
-        setRows(generateRows({ min, numberBond, useAddition }, numberOfRows));
+        setRows(generateRows({ min, numberBond, useAddition, useSubtraction }, numberOfRows));
     }, [min, numberBond, useAddition, useSubtraction]);
 
     return (
@@ -99,7 +99,9 @@ function App() {
                                 color="primary"
                                 endIcon={<Icon>send</Icon>}
                                 onClick={() => {
-                                    setRows(generateRows({ min, numberBond, useAddition }, numberOfRows));
+                                    setRows(
+                                        generateRows({ min, numberBond, useAddition, useSubtraction }, numberOfRows)
+                                    );
                                 }}
                             >
                                 Generate maths fun!
