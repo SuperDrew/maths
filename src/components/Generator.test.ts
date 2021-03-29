@@ -1,32 +1,15 @@
 import { generateRows } from './Generator';
 import * as fc from 'fast-check';
-import { Operations } from './Operations';
-import { pickOperation, randBetween } from './OperandsGenerator';
 
 declare global {
     namespace jest {
         interface Matchers<R> {
-            toBeInArray<T>(array: T[]): R;
             toBeWithinRange(floor: number, ceiling: number): R;
         }
     }
 }
 
 expect.extend({
-    toBeInArray<T>(received: T, array: T[]) {
-        const receivedIsInArray = array.includes(received);
-        if (receivedIsInArray) {
-            return {
-                message: () => `expected ${received} not to be in array [${array}]`,
-                pass: true,
-            };
-        } else {
-            return {
-                message: () => `expected ${received} to be in array [${array}]`,
-                pass: false,
-            };
-        }
-    },
     toBeWithinRange(received, floor, ceiling) {
         const pass = received >= floor && received <= ceiling;
         if (pass) {
@@ -44,17 +27,6 @@ expect.extend({
 });
 
 describe('Generator', () => {
-    it('should generate a random number <= min and <= max', () => {
-        fc.assert(
-            fc.property(fc.nat(100), fc.nat(100), (nat1, nat2) => {
-                const min = nat1;
-                const max = nat1 + nat2;
-                expect(randBetween(min, max)).toBeLessThanOrEqual(max);
-                expect(randBetween(min, max)).toBeGreaterThanOrEqual(min);
-            })
-        );
-    });
-
     it('should generate 10 rows', () => {
         fc.assert(
             fc.property(fc.nat(100), fc.nat(100), (nat1, nat2) => {
@@ -82,34 +54,7 @@ describe('Generator', () => {
         );
     });
 
-    describe('when exact number bonds are used', () => {
-        it('should generate sums that are equal to the number bond selected', () => {
-            fc.assert(
-                fc.property(fc.integer(0, 5), fc.integer(0, 10), fc.integer(500, 550), (int1, int2, numberOfRows) => {
-                    const rows = generateRows(
-                        { min: int1, numberBond: int1 + int2, useAddition: true, useSubtraction: true },
-                        numberOfRows
-                    );
-                })
-            );
-        });
-    });
     describe('operations', () => {
-        it('should pick a random operation from the selected operations', () => {
-            fc.assert(
-                fc.property(
-                    fc.set(fc.constantFrom(Operations.Addition, Operations.Subtraction), {
-                        minLength: 1,
-                        maxLength: 2,
-                    }),
-                    (operations) => {
-                        const operation = pickOperation(operations);
-                        expect(operation).toBeInArray(operations);
-                    }
-                )
-            );
-        });
-
         it('should generate roughly equal proportions of available operations', () => {
             fc.assert(
                 fc.property(
