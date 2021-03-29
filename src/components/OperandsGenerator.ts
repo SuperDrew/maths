@@ -19,8 +19,7 @@ const randBetween = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
 };
 
-const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands => {
-    const a = randBetween(generateProps.min, generateProps.numberBond);
+function createOperations(generateProps: GenerateProps) {
     const operations = [];
     if (generateProps.useAddition) {
         operations.push(Operations.Addition);
@@ -28,7 +27,12 @@ const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands =>
     if (generateProps.useSubtraction) {
         operations.push(Operations.Subtraction);
     }
-    const operation = pickOperation(operations);
+    return operations;
+}
+
+const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands => {
+    const a = randBetween(generateProps.min, generateProps.numberBond);
+    const operation = pickOperation(createOperations(generateProps));
     const b =
         operation === Operations.Addition
             ? randBetween(generateProps.min, generateProps.numberBond - a)
