@@ -13,7 +13,14 @@ const randBetween = (min: number, max: number) => {
 const generateRandomSum = (generateProps: GenerateProps) => {
     // a +/- b = x
     const a = randBetween(generateProps.min, generateProps.numberBond);
-    const operation = pickOperation([Operations.Addition, Operations.Subtraction]);
+    const operations = [];
+    if (generateProps.useAddition) {
+        operations.push(Operations.Addition);
+    }
+    if (generateProps.useSubtraction) {
+        operations.push(Operations.Subtraction);
+    }
+    const operation = pickOperation(operations);
     const b =
         operation == Operations.Addition
             ? randBetween(generateProps.min, generateProps.numberBond - a)
