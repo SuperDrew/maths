@@ -52,6 +52,9 @@ interface GenerateProps {
 }
 
 const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[] => {
+    if (!generateProps.useSubtraction && !generateProps.useAddition) {
+        return [];
+    }
     const rows = [];
     for (let i = 0; i < numberOfRows; i++) {
         rows.push(generateRow(generateProps, i));

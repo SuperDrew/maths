@@ -69,6 +69,18 @@ describe('Generator', () => {
         );
     });
 
+    it('should not generate any rows if no operations are provided', () => {
+        fc.assert(
+            fc.property(fc.nat(100), fc.nat(100), (nat1, nat2) => {
+                const numRows = 10;
+                const min = nat1;
+                const numberBond = nat1 + nat2;
+                const rows = generateRows({ min, numberBond, useAddition: false, useSubtraction: false }, numRows);
+                expect(rows).toHaveLength(0);
+            })
+        );
+    });
+
     describe('operations', () => {
         it('should pick a random operation from the selected operations', () => {
             fc.assert(
