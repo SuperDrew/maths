@@ -127,9 +127,11 @@ describe('Generator', () => {
                             }%, subtractions: ${(subtractions * 100) / numberOfSums}%`
                         );
                         const fiftyPercent = numberOfSums / 2;
-                        const halfRange = fiftyPercent / 5;
-                        expect(additions).toBeWithinRange(fiftyPercent - halfRange, fiftyPercent + halfRange);
-                        expect(subtractions).toBeWithinRange(fiftyPercent - halfRange, fiftyPercent + halfRange);
+                        const tenPercent = numberOfSums / 10;
+                        const floor = fiftyPercent - tenPercent;
+                        const ceiling = fiftyPercent + tenPercent;
+                        expect(additions).toBeWithinRange(floor, ceiling);
+                        expect(subtractions).toBeWithinRange(floor, ceiling);
                     }
                 )
             );
