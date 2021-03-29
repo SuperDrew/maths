@@ -45,7 +45,10 @@ describe('Generator', () => {
                 const expectedNumberOfRows = 10;
                 const min = nat1;
                 const numberBond = nat1 + nat2;
-                const rows = generateRows({ min, numberBond, useAddition: true }, expectedNumberOfRows);
+                const rows = generateRows(
+                    { min, numberBond, useAddition: true, useSubtraction: false },
+                    expectedNumberOfRows
+                );
                 expect(rows).toHaveLength(expectedNumberOfRows);
             })
         );

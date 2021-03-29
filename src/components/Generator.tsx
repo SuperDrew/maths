@@ -22,7 +22,7 @@ const generateRandomSum = (generateProps: GenerateProps) => {
     }
     const operation = pickOperation(operations);
     const b =
-        operation == Operations.Addition
+        operation === Operations.Addition
             ? randBetween(generateProps.min, generateProps.numberBond - a)
             : randBetween(0, a);
     return `${a} ${operation} ${b} = ___`;
