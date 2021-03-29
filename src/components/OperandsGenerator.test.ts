@@ -36,7 +36,7 @@ const evaluateOperandsForExactNumberBond = (operands: Operands, numberBond: numb
     if (operands.operation === Operations.Subtraction) {
         const aAsNumber = operands.a as number;
         const bAsNumber = operands.b as number;
-        return aAsNumber - bAsNumber === numberBond;
+        return aAsNumber === numberBond && bAsNumber <= numberBond && bAsNumber >= 0;
     }
 };
 
@@ -68,7 +68,6 @@ describe('OperandsGenerator', () => {
     });
 
     describe('when exact number bonds are used', () => {
-        //TODO write test for subtraction
         it('should generate sums that are equal to the number bond selected when using addition', () => {
             fc.assert(
                 fc.property(fc.integer(0, 10), (numberBond) => {
@@ -76,7 +75,7 @@ describe('OperandsGenerator', () => {
                         min: 0,
                         numberBond: numberBond,
                         useAddition: true,
-                        useSubtraction: false,
+                        useSubtraction: true,
                         useExactNumberBonds: true,
                     });
                     console.log(
