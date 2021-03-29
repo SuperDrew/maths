@@ -1,5 +1,5 @@
 import { Operations } from './Operations';
-import { GenerateProps, pickOperation, randBetween } from './Generator';
+import { GenerateProps } from './Generator';
 
 type Answer = '___';
 type numberOrAnswer = number | Answer;
@@ -10,6 +10,14 @@ interface Operands {
     b: numberOrAnswer;
     x: numberOrAnswer;
 }
+
+const pickOperation = (operations: Operations[]) => {
+    return operations[Math.floor(Math.random() * operations.length)];
+};
+
+const randBetween = (min: number, max: number) => {
+    return Math.round(Math.random() * (max - min) + min);
+};
 
 const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps) => {
     const a = randBetween(generateProps.min, generateProps.numberBond);
@@ -25,7 +33,7 @@ const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps) => {
         operation === Operations.Addition
             ? randBetween(generateProps.min, generateProps.numberBond - a)
             : randBetween(0, a);
-    return <Operands>{ a, operation, b, x: '___' };
+    return { a, operation, b, x: '___' };
 };
 
-export { generateAPlusOrMinusBEqualsX };
+export { generateAPlusOrMinusBEqualsX, randBetween, pickOperation };

@@ -1,6 +1,7 @@
-import { generateRows, pickOperation, randBetween } from './Generator';
+import { generateRows } from './Generator';
 import * as fc from 'fast-check';
 import { Operations } from './Operations';
+import { pickOperation, randBetween } from './OperandsGenerator';
 
 declare global {
     namespace jest {
@@ -81,6 +82,18 @@ describe('Generator', () => {
         );
     });
 
+    describe('when exact number bonds are used', () => {
+        it('should generate sums that are equal to the number bond selected', () => {
+            fc.assert(
+                fc.property(fc.integer(0, 5), fc.integer(0, 10), fc.integer(500, 550), (int1, int2, numberOfRows) => {
+                    const rows = generateRows(
+                        { min: int1, numberBond: int1 + int2, useAddition: true, useSubtraction: true },
+                        numberOfRows
+                    );
+                })
+            );
+        });
+    });
     describe('operations', () => {
         it('should pick a random operation from the selected operations', () => {
             fc.assert(

@@ -1,15 +1,6 @@
 //TODO pull out numerical random generation into a different class to separate it from the string manipulation
 
-import { Operations } from './Operations';
 import { generateAPlusOrMinusBEqualsX } from './OperandsGenerator';
-
-const pickOperation = (operations: Operations[]) => {
-    return operations[Math.floor(Math.random() * operations.length)];
-};
-
-const randBetween = (min: number, max: number) => {
-    return Math.round(Math.random() * (max - min) + min);
-};
 
 const generateRandomSum = (generateProps: GenerateProps) => {
     const { a, operation, b, x } = generateAPlusOrMinusBEqualsX(generateProps);
@@ -51,4 +42,4 @@ const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[]
 };
 
 export type { GenerateProps };
-export { generateRows, randBetween, pickOperation };
+export { generateRows };
