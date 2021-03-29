@@ -51,9 +51,9 @@ interface GenerateProps {
     useSubtraction: boolean;
 }
 
-const generateRows = (generateProps: GenerateProps, expectedNumberOfRows: number): Row[] => {
+const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[] => {
     const rows = [];
-    for (let i = 0; i < expectedNumberOfRows; i++) {
+    for (let i = 0; i < numberOfRows; i++) {
         rows.push(generateRow(generateProps, i));
     }
     return rows;

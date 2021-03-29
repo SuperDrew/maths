@@ -6,6 +6,7 @@ declare global {
     namespace jest {
         interface Matchers<R> {
             toBeInArray<T>(array: T[]): R;
+            toBeWithinRange(floor: number, ceiling: number): R;
         }
     }
 }
@@ -21,6 +22,20 @@ expect.extend({
         } else {
             return {
                 message: () => `expected ${received} to be in array [${array}]`,
+                pass: false,
+            };
+        }
+    },
+    toBeWithinRange(received, floor, ceiling) {
+        const pass = received >= floor && received <= ceiling;
+        if (pass) {
+            return {
+                message: () => `expected ${received} not to be within range ${floor} - ${ceiling}`,
+                pass: true,
+            };
+        } else {
+            return {
+                message: () => `expected ${received} to be within range ${floor} - ${ceiling}`,
                 pass: false,
             };
         }
@@ -54,15 +69,58 @@ describe('Generator', () => {
         );
     });
 
-    it('should pick a random operation from the selected operations', () => {
-        fc.assert(
-            fc.property(
-                fc.set(fc.constantFrom(Operations.Addition, Operations.Subtraction), { minLength: 1, maxLength: 2 }),
-                (operations) => {
-                    const operation = pickOperation(operations);
-                    expect(operation).toBeInArray(operations);
-                }
-            )
-        );
+    describe('operations', () => {
+        it('should pick a random operation from the selected operations', () => {
+            fc.assert(
+                fc.property(
+                    fc.set(fc.constantFrom(Operations.Addition, Operations.Subtraction), {
+                        minLength: 1,
+                        maxLength: 2,
+                    }),
+                    (operations) => {
+                        const operation = pickOperation(operations);
+                        expect(operation).toBeInArray(operations);
+                    }
+                )
+            );
+        });
+
+        it('should generate roughly equal proportions of available operations', () => {
+            fc.assert(
+                fc.property(
+                    fc.integer(0, 5),
+                    fc.integer(0, 10),
+                    fc.integer(500, 550),
+                    (min, numberBond, numberOfRows) => {
+                        const rows = generateRows(
+                            { min, numberBond: min + numberBond, useAddition: true, useSubtraction: true },
+                            numberOfRows
+                        );
+                        let additions = 0;
+                        let subtractions = 0;
+                        for (let row of rows) {
+                            for (let sum of row.sums) {
+                                if (sum.includes('+')) {
+                                    additions++;
+                                }
+                                if (sum.includes('-')) {
+                                    subtractions++;
+                                }
+                            }
+                        }
+                        const numberOfSums = numberOfRows * 3;
+                        console.log(
+                            `numberofSums: ${numberOfSums}, fiftypercent: ${numberOfSums / 2}, additions: ${
+                                (additions * 100) / numberOfSums
+                            }%, subtractions: ${(subtractions * 100) / numberOfSums}%`
+                        );
+                        const fiftyPercent = numberOfSums / 2;
+                        const halfRange = fiftyPercent / 5;
+                        expect(additions).toBeWithinRange(fiftyPercent - halfRange, fiftyPercent + halfRange);
+                        expect(subtractions).toBeWithinRange(fiftyPercent - halfRange, fiftyPercent + halfRange);
+                    }
+                )
+            );
+        });
     });
 });
