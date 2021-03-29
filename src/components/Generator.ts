@@ -10,8 +10,18 @@ const randBetween = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
 };
 
-const generateRandomSum = (generateProps: GenerateProps) => {
-    // a +/- b = x
+type Answer = '___';
+
+type numberOrAnswer = number | Answer;
+
+interface Operands {
+    a: numberOrAnswer;
+    operation: Operations;
+    b: numberOrAnswer;
+    x: numberOrAnswer;
+}
+
+function generateAPlusOrMinusBEqualsX(generateProps: GenerateProps) {
     const a = randBetween(generateProps.min, generateProps.numberBond);
     const operations = [];
     if (generateProps.useAddition) {
@@ -25,7 +35,12 @@ const generateRandomSum = (generateProps: GenerateProps) => {
         operation === Operations.Addition
             ? randBetween(generateProps.min, generateProps.numberBond - a)
             : randBetween(0, a);
-    return `${a} ${operation} ${b} = ___`;
+    return <Operands>{ a, operation, b, x: '___' };
+}
+
+const generateRandomSum = (generateProps: GenerateProps) => {
+    const { a, operation, b, x } = generateAPlusOrMinusBEqualsX(generateProps);
+    return `${a} ${operation} ${b} = ${x}`;
 };
 
 export interface Row {
