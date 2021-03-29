@@ -2,6 +2,31 @@ import { generateRows, pickOperation, randBetween } from './Generator';
 import * as fc from 'fast-check';
 import { Operations } from './Operations';
 
+declare global {
+    namespace jest {
+        interface Matchers<R> {
+            toBeInArray<T>(array: T[]): R;
+        }
+    }
+}
+
+expect.extend({
+    toBeInArray<T>(received: T, array: T[]) {
+        const receivedIsInArray = array.includes(received);
+        if (receivedIsInArray) {
+            return {
+                message: () => `expected ${received} not to be in array [${array}]`,
+                pass: true,
+            };
+        } else {
+            return {
+                message: () => `expected ${received} to be in array [${array}]`,
+                pass: false,
+            };
+        }
+    },
+});
+
 describe('Generator', () => {
     it('should generate a random number <= min and <= max', () => {
         fc.assert(
@@ -29,6 +54,6 @@ describe('Generator', () => {
     it('should pick a random operation from the selected operations', () => {
         const operations = [Operations.Addition, Operations.Subtraction];
         const operation = pickOperation(operations);
-        expect(operations).toContain(operation);
+        expect(operation).toBeInArray(operations);
     });
 });
