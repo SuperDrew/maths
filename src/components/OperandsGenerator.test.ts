@@ -1,7 +1,7 @@
 import { generateAPlusOrMinusBEqualsX, Operands, pickOperation, randBetween } from './OperandsGenerator';
 import { Operations } from './Operations';
 import * as fc from 'fast-check';
-import { NotImplementedError } from '../CustomErrors/CustomeErrors';
+import { NotImplementedError } from '../customErrors/CustomeErrors';
 
 declare global {
     namespace jest {

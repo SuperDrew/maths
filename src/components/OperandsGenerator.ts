@@ -1,6 +1,6 @@
 import { Operations } from './Operations';
 import { GenerateProps } from './Generator';
-import { NotImplementedError } from '../CustomErrors/CustomeErrors';
+import { NotImplementedError } from '../customErrors/CustomeErrors';
 
 type Answer = '___';
 type numberOrAnswer = number | Answer;
