@@ -1,5 +1,6 @@
 import { generateRows } from './Generator';
 import * as fc from 'fast-check';
+import { debug } from '../config';
 
 declare global {
     namespace jest {
@@ -79,8 +80,8 @@ describe('Generator', () => {
                             }
                         }
                         const numberOfSums = numberOfRows * 3;
-                        console.log(
-                            `numberofSums: ${numberOfSums}, fiftypercent: ${numberOfSums / 2}, additions: ${
+                        debug(
+                            `numberOfSums: ${numberOfSums}, fiftyPercent: ${numberOfSums / 2}, additions: ${
                                 (additions * 100) / numberOfSums
                             }%, subtractions: ${(subtractions * 100) / numberOfSums}%`
                         );

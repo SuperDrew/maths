@@ -2,6 +2,7 @@ import { generateAPlusOrMinusBEqualsX, Operands, pickOperation, randBetween } fr
 import { Operations } from './Operations';
 import * as fc from 'fast-check';
 import { NotImplementedError } from '../customErrors/CustomeErrors';
+import { debug } from '../config';
 
 declare global {
     namespace jest {
@@ -80,7 +81,7 @@ describe('OperandsGenerator', () => {
                         useSubtraction: true,
                         useExactNumberBonds: true,
                     });
-                    console.log(
+                    debug(
                         `operands: a: ${operands.a}, operation: ${operands.operation}, b: ${operands.b}, numberBond: ${numberBond}`
                     );
                     expect(evaluateOperandsForExactNumberBond(operands, numberBond)).toBe(true);
