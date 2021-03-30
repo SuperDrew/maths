@@ -1,5 +1,6 @@
 import { Operations } from './Operations';
 import { GenerateProps } from './Generator';
+import { NotImplementedError } from '../CustomErrors/CustomeErrors';
 
 type Answer = '___';
 type numberOrAnswer = number | Answer;
@@ -43,7 +44,7 @@ const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands =>
             const b = generateProps.numberBond - a;
             return { a, operation, b, x: '___' };
         }
-        throw Error(`operation not implemented yet: ${operation}`);
+        throw new NotImplementedError(operation);
     }
     const a = randBetween(generateProps.min, generateProps.numberBond);
     const operation = pickOperation(createOperations(generateProps));

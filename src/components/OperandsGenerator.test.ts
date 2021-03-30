@@ -1,6 +1,7 @@
 import { generateAPlusOrMinusBEqualsX, Operands, pickOperation, randBetween } from './OperandsGenerator';
 import { Operations } from './Operations';
 import * as fc from 'fast-check';
+import { NotImplementedError } from '../CustomErrors/CustomeErrors';
 
 declare global {
     namespace jest {
@@ -38,6 +39,7 @@ const evaluateOperandsForExactNumberBond = (operands: Operands, numberBond: numb
         const bAsNumber = operands.b as number;
         return aAsNumber === numberBond && bAsNumber <= numberBond && bAsNumber >= 0;
     }
+    throw new NotImplementedError(operands.operation);
 };
 
 describe('OperandsGenerator', () => {
