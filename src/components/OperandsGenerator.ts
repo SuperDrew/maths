@@ -3,13 +3,13 @@ import { GenerateProps } from './Generator';
 import { NotImplementedError } from '../customErrors/CustomeErrors';
 
 type Answer = '___';
-type numberOrAnswer = number | Answer;
+type NumberOrAnswer = number | Answer;
 
 interface Operands {
-    a: numberOrAnswer;
+    a: NumberOrAnswer;
     operation: Operations;
-    b: numberOrAnswer;
-    x: numberOrAnswer;
+    b: NumberOrAnswer;
+    x: NumberOrAnswer;
 }
 
 const pickOperation = (operations: Operations[]) => {
@@ -55,5 +55,5 @@ const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands =>
     return { a, operation, b, x: '___' };
 };
 
-export type { Operands, numberOrAnswer };
+export type { Operands, NumberOrAnswer };
 export { generateAPlusOrMinusBEqualsX, randBetween, pickOperation };
