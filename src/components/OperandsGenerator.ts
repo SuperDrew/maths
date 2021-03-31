@@ -55,5 +55,5 @@ const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands =>
     return { a, operation, b, x: '___' };
 };
 
-export type { Operands };
+export type { Operands, numberOrAnswer };
 export { generateAPlusOrMinusBEqualsX, randBetween, pickOperation };

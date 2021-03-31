@@ -1,25 +1,12 @@
-import { generateAPlusOrMinusBEqualsX } from './OperandsGenerator';
+import { generateAPlusOrMinusBEqualsX, Operands } from './OperandsGenerator';
 
-const generateRandomSum = (generateProps: GenerateProps) => {
-    const { a, operation, b, x } = generateAPlusOrMinusBEqualsX(generateProps);
-    return `${a} ${operation} ${b} = ${x}`;
-};
+const numberOfColumns = 3;
+const generationFactorForUniqueness = 2;
 
-export interface Row {
+interface Row {
     key: number;
     sums: string[];
 }
-
-const generateSums = (generateProps: GenerateProps) => [
-    generateRandomSum(generateProps),
-    generateRandomSum(generateProps),
-    generateRandomSum(generateProps),
-];
-
-const generateRow = (generateProps: GenerateProps, rowNumber: number): Row => ({
-    key: rowNumber,
-    sums: generateSums(generateProps),
-});
 
 interface GenerateProps {
     min: number;
@@ -29,16 +16,36 @@ interface GenerateProps {
     useExactNumberBonds?: boolean;
 }
 
+const transformOperandsIntoSum = (operands: Operands) =>
+    `${operands.a} ${operands.operation} ${operands.b} = ${operands.x}`;
+
+const getSums = (uniqueOperandArray: Operands[], uniqueSumPosition: number) => {
+    const slice = uniqueOperandArray.slice(uniqueSumPosition, uniqueSumPosition + numberOfColumns);
+    return slice.map((operands) => transformOperandsIntoSum(operands));
+};
+
 const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[] => {
     if (!generateProps.useSubtraction && !generateProps.useAddition) {
         return [];
     }
-    const rows = [];
-    for (let i = 0; i < numberOfRows; i++) {
-        rows.push(generateRow(generateProps, i));
+
+    const numSumsForWholeGrid = numberOfRows * numberOfColumns;
+    let operandsArray = [];
+    for (let j = 0; j < numSumsForWholeGrid * generationFactorForUniqueness; j++) {
+        operandsArray.push(generateAPlusOrMinusBEqualsX(generateProps));
     }
+
+    // TODO This set does not produce uniqueness as it's on an object and it doesn't do deep equality.
+    const uniqueOperandsArray = [...new Set(operandsArray)];
+    const rows = [];
+    let uniqueSumPosition = 0;
+    for (let i = 0; i < numberOfRows; i++) {
+        rows.push({ key: i, sums: getSums(uniqueOperandsArray, uniqueSumPosition) });
+        uniqueSumPosition += numberOfColumns;
+    }
+
     return rows;
 };
 
-export type { GenerateProps };
+export type { GenerateProps, Row };
 export { generateRows };
