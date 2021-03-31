@@ -55,6 +55,23 @@ describe('Generator', () => {
         );
     });
 
+    it('should generate unique sums', () => {
+        fc.assert(
+            fc.property(fc.constant(0), fc.nat(100), fc.nat(20), (min, numberBond, numRows) => {
+                const rows = generateRows({ min, numberBond, useAddition: true, useSubtraction: true }, numRows);
+
+                let allSums: string[] = [];
+                for (let row of rows) {
+                    for (let sum of row.sums) {
+                        allSums.push(sum);
+                    }
+                }
+                debug(`allSums: ${allSums}`);
+                expect(allSums.length).toBe([...new Set(allSums)].length);
+            })
+        );
+    });
+
     describe('operations', () => {
         it('should generate roughly equal proportions of available operations', () => {
             fc.assert(
