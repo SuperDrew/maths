@@ -67,6 +67,7 @@ function App() {
                             <Grid item>
                                 <LabelledSlider
                                     label="Number Bonds"
+                                    min={1}
                                     max={10}
                                     value={numberBond}
                                     step={1}

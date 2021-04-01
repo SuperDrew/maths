@@ -2,6 +2,7 @@ import { Slider, Typography } from '@material-ui/core';
 import React from 'react';
 
 interface LabelledSliderProps {
+    min: number;
     max: number;
     label: string;
     value: number;
@@ -10,9 +11,8 @@ interface LabelledSliderProps {
 }
 
 export const LabelledSlider = (props: LabelledSliderProps) => {
-    const min = 1;
-    const marks = [...Array(props.max - min + 2).keys()]
-        .filter((key) => key >= min)
+    const marks = [...Array(props.max - props.min + 2).keys()]
+        .filter((key) => key >= props.min)
         .map((value) => ({
             value: value,
             label: value.toString(),
@@ -29,7 +29,7 @@ export const LabelledSlider = (props: LabelledSliderProps) => {
                 aria-labelledby="discrete-slider-custom"
                 step={props.step}
                 valueLabelDisplay="off"
-                min={min}
+                min={props.min}
                 max={props.max}
                 marks={marks}
                 onChange={(event, value) => {
