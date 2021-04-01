@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
 function App() {
     const classes = useStyles();
     const min = 0;
-    const numberOfRows = 10;
+    const numberOfRows = 5;
     const [numberBond, setNumberBond] = useState(10);
     const [useExactNumberBonds, setUseExactNumberBonds] = useState(true);
     const [useAddition, setUseAddition] = useState(true);
