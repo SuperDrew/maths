@@ -10,7 +10,13 @@ interface LabelledSliderProps {
 }
 
 export const LabelledSlider = (props: LabelledSliderProps) => {
-    const marks = [...Array(props.max + 1).keys()].map((value) => ({ value: value, label: value.toString() }));
+    const min = 1;
+    const marks = [...Array(props.max - min + 2).keys()]
+        .filter((key) => key >= min)
+        .map((value) => ({
+            value: value,
+            label: value.toString(),
+        }));
 
     return (
         <>
@@ -23,7 +29,7 @@ export const LabelledSlider = (props: LabelledSliderProps) => {
                 aria-labelledby="discrete-slider-custom"
                 step={props.step}
                 valueLabelDisplay="off"
-                min={0}
+                min={min}
                 max={props.max}
                 marks={marks}
                 onChange={(event, value) => {
