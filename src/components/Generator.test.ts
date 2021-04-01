@@ -33,12 +33,18 @@ describe('Generator', () => {
         [false, true],
         [true, true],
     ])(
-        'should generate 10 rows with a hig enough Number Bond with useAddition: %s, useSubtraction: %s',
+        'should generate 10 rows with a high enough Number Bond with useAddition: %s, useSubtraction: %s',
         (useAddition, useSubtraction) => {
             fc.assert(
                 fc.property(fc.constant(0), fc.constant(10), fc.integer(20, 30), (min, numberOfRows, numberBond) => {
                     const rows = generateRows(
-                        { min, numberBond, useAddition: useAddition, useSubtraction: useSubtraction },
+                        {
+                            min,
+                            numberBond,
+                            useExactNumberBonds: false,
+                            useAddition: useAddition,
+                            useSubtraction: useSubtraction,
+                        },
                         numberOfRows
                     );
                     expect(rows).toHaveLength(numberOfRows);
@@ -53,7 +59,10 @@ describe('Generator', () => {
                 const numRows = 10;
                 const min = nat1;
                 const numberBond = nat1 + nat2;
-                const rows = generateRows({ min, numberBond, useAddition: false, useSubtraction: false }, numRows);
+                const rows = generateRows(
+                    { min, numberBond, useExactNumberBonds: false, useAddition: false, useSubtraction: false },
+                    numRows
+                );
                 expect(rows).toHaveLength(0);
             })
         );
@@ -62,7 +71,10 @@ describe('Generator', () => {
     it('should generate unique sums', () => {
         fc.assert(
             fc.property(fc.constant(0), fc.nat(100), fc.nat(20), (min, numberBond, numRows) => {
-                const rows = generateRows({ min, numberBond, useAddition: true, useSubtraction: true }, numRows);
+                const rows = generateRows(
+                    { min, numberBond, useExactNumberBonds: false, useAddition: true, useSubtraction: true },
+                    numRows
+                );
 
                 let allSums: string[] = [];
                 for (let row of rows) {
@@ -85,7 +97,13 @@ describe('Generator', () => {
                     fc.integer(500, 550),
                     (min, numberBond, numberOfRows) => {
                         const rows = generateRows(
-                            { min, numberBond: min + numberBond, useAddition: true, useSubtraction: true },
+                            {
+                                min,
+                                useExactNumberBonds: false,
+                                numberBond: min + numberBond,
+                                useAddition: true,
+                                useSubtraction: true,
+                            },
                             numberOfRows
                         );
                         let additions = 0;

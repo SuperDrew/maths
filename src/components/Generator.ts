@@ -13,7 +13,7 @@ interface GenerateProps {
     numberBond: number;
     useAddition: boolean;
     useSubtraction: boolean;
-    useExactNumberBonds?: boolean;
+    useExactNumberBonds: boolean;
 }
 
 const transformOperandsIntoSum = (operands: Operands) =>
