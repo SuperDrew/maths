@@ -81,8 +81,8 @@ describe('Generator', () => {
         it('should generate roughly equal proportions of available operations', () => {
             fc.assert(
                 fc.property(
-                    fc.integer(0, 5),
-                    fc.integer(0, 10),
+                    fc.constant(0),
+                    fc.integer(1, 10),
                     fc.integer(500, 550),
                     (min, numberBond, numberOfRows) => {
                         const rows = generateRows(
@@ -101,7 +101,7 @@ describe('Generator', () => {
                                 }
                             }
                         }
-                        const numberOfSums = numberOfRows * 3;
+                        const numberOfSums = additions + subtractions;
                         debug(
                             `numberOfSums: ${numberOfSums}, fiftyPercent: ${numberOfSums / 2}, additions: ${
                                 (additions * 100) / numberOfSums
