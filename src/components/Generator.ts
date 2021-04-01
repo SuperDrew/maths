@@ -1,4 +1,4 @@
-import { generateAPlusOrMinusBEqualsX, Operands } from './OperandsGenerator';
+import { generateAOperandBEqualsAnswer, Operands } from './OperandsGenerator';
 
 const numberOfColumns = 3;
 const generationFactorForUniqueness = 4;
@@ -27,7 +27,7 @@ const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[]
     const numSumsForWholeGrid = numberOfRows * numberOfColumns;
     let operandsArray: Operands[] = [];
     for (let j = 0; j < numSumsForWholeGrid * generationFactorForUniqueness; j++) {
-        operandsArray.push(generateAPlusOrMinusBEqualsX(generateProps));
+        operandsArray.push(generateAOperandBEqualsAnswer(generateProps));
     }
     const sumsArray: string[] = operandsArray.map<string>((operand) => {
         return transformOperandsIntoSum(operand);

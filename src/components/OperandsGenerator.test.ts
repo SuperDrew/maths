@@ -1,4 +1,9 @@
-import { generateAPlusOrMinusBEqualsX, Operands, pickOperation, randBetween } from './OperandsGenerator';
+import {
+    generateAOperandBEqualsAnswer,
+    Operands,
+    pickOperation,
+    randBetween,
+} from './OperandsGenerator';
 import { Operations } from './Operations';
 import * as fc from 'fast-check';
 import { NotImplementedError } from '../customErrors/CustomeErrors';
@@ -70,11 +75,15 @@ describe('OperandsGenerator', () => {
         );
     });
 
+    describe('should generate sums with Answer in b position', () => {
+        it('shoudl generate valid sums', () => {});
+    });
+
     describe('when exact number bonds are used', () => {
-        it('should generate sums that are equal to the number bond selected when using addition', () => {
+        it('should generate sums that are equal to the number bond selected', () => {
             fc.assert(
                 fc.property(fc.integer(0, 10), (numberBond) => {
-                    const operands = generateAPlusOrMinusBEqualsX({
+                    const operands = generateAOperandBEqualsAnswer({
                         min: 0,
                         numberBond: numberBond,
                         useAddition: true,

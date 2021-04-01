@@ -31,7 +31,7 @@ function createOperations(generateProps: GenerateProps) {
     return operations;
 }
 
-const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands => {
+const generateAPlusOrMinusBEqualsAnswer = (generateProps: GenerateProps): Operands => {
     if (generateProps.useExactNumberBonds) {
         const operation = pickOperation(createOperations(generateProps));
         if (operation === Operations.Subtraction) {
@@ -56,4 +56,4 @@ const generateAPlusOrMinusBEqualsX = (generateProps: GenerateProps): Operands =>
 };
 
 export type { Operands };
-export { generateAPlusOrMinusBEqualsX, randBetween, pickOperation };
+export { generateAOperandBEqualsAnswer, randBetween, pickOperation };
