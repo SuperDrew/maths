@@ -1,7 +1,7 @@
 import { generateAPlusOrMinusBEqualsX, Operands } from './OperandsGenerator';
 
 const numberOfColumns = 3;
-const generationFactorForUniqueness = 2;
+const generationFactorForUniqueness = 4;
 
 interface Row {
     key: number;
