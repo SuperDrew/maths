@@ -19,11 +19,6 @@ interface GenerateProps {
 const transformOperandsIntoSum = (operands: Operands) =>
     `${operands.a} ${operands.operation} ${operands.b} = ${operands.x}`;
 
-const getSums = (uniqueOperandArray: Operands[], uniqueSumPosition: number) => {
-    const slice = uniqueOperandArray.slice(uniqueSumPosition, uniqueSumPosition + numberOfColumns);
-    return slice.map((operands) => transformOperandsIntoSum(operands));
-};
-
 const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[] => {
     if (!generateProps.useSubtraction && !generateProps.useAddition) {
         return [];
