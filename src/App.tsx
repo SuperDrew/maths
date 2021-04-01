@@ -136,8 +136,8 @@ function App() {
                         <Grid item>
                             <Button
                                 variant="contained"
-                                color="primary"
-                                endIcon={<Icon>send</Icon>}
+                                color="default"
+                                endIcon={<Icon>refresh</Icon>}
                                 onClick={() => {
                                     setRows(
                                         generateRows(
@@ -147,7 +147,7 @@ function App() {
                                     );
                                 }}
                             >
-                                Generate maths fun!
+                                Generate another worksheet
                             </Button>
                         </Grid>
                     </Grid>
