@@ -1,5 +1,6 @@
 import {
     generateAOperandBEqualsAnswer,
+    generateAOperandAnswerEqualsX,
     Operands,
     pickOperation,
     randBetween,
@@ -75,8 +76,27 @@ describe('OperandsGenerator', () => {
         );
     });
 
-    describe('should generate sums with Answer in b position', () => {
-        it('shoudl generate valid sums', () => {});
+    describe('generate sums with Answer in b position', () => {
+        it('should generate valid sums', () => {
+            fc.assert(
+                fc.property(fc.constant(0), fc.nat(10), (min, numberBond) => {
+                    const sum = generateAOperandAnswerEqualsX({
+                        min,
+                        numberBond,
+                        useAddition: true,
+                        useSubtraction: true,
+                        useExactNumberBonds: false,
+                    });
+                    if (sum.operation === Operations.Addition) {
+                        expect(sum.a).toBeLessThanOrEqual(sum.x as number);
+                    }
+                    if (sum.operation === Operations.Subtraction) {
+                        expect(sum.a).toBeGreaterThanOrEqual(sum.x as number);
+                    }
+                    console.log(sum);
+                })
+            );
+        });
     });
 
     describe('when exact number bonds are used', () => {

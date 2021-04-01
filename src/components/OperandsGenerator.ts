@@ -31,7 +31,14 @@ function createOperations(generateProps: GenerateProps) {
     return operations;
 }
 
-const generateAPlusOrMinusBEqualsAnswer = (generateProps: GenerateProps): Operands => {
+const generateAOperandAnswerEqualsX = (generateProps: GenerateProps): Operands => {
+    const a = randBetween(generateProps.min, generateProps.numberBond);
+    const operation = pickOperation(createOperations(generateProps));
+    const x = operation === Operations.Addition ? randBetween(a, generateProps.numberBond) : randBetween(0, a);
+    return { a, operation, b: '___', x };
+};
+
+const generateAOperandBEqualsAnswer = (generateProps: GenerateProps): Operands => {
     if (generateProps.useExactNumberBonds) {
         const operation = pickOperation(createOperations(generateProps));
         if (operation === Operations.Subtraction) {
@@ -56,4 +63,4 @@ const generateAPlusOrMinusBEqualsAnswer = (generateProps: GenerateProps): Operan
 };
 
 export type { Operands };
-export { generateAOperandBEqualsAnswer, randBetween, pickOperation };
+export { generateAOperandBEqualsAnswer, generateAOperandAnswerEqualsX, randBetween, pickOperation };
