@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './reset.css';
 import Button from '@material-ui/core/Button';
-import { Container, Grid, Icon, Paper, TextField, Typography } from '@material-ui/core';
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Container,
+    Grid,
+    Icon,
+    Paper,
+    TextField,
+    Typography,
+} from '@material-ui/core';
 import { LabelledSlider } from './components/LabelledSlider';
 import { LabelledCheckBox } from './components/LabelledCheckBox';
 import { QuestionTable } from './components/QuestionTable';
@@ -88,49 +98,61 @@ function App() {
                                     onChange={updateNumberBond}
                                 />
                             </Grid>
-                            <Grid container alignItems={'center'}>
-                                <Grid item>
-                                    <LabelledCheckBox
-                                        name="Use exact Number Bonds"
-                                        color="primary"
-                                        value={useExactNumberBonds}
-                                        onChange={updateUseExactNumberBonds}
-                                    />
-                                </Grid>
-                                <Grid item>
-                                    <TextField
-                                        type="number"
-                                        label="number of rows"
-                                        variant="outlined"
-                                        value={numberOfRows}
-                                        onChange={(event) => updateNumberRows(event.target.value)}
-                                    />
-                                </Grid>
-                            </Grid>
+                            <Accordion>
+                                <AccordionSummary expandIcon={<Icon>expand_more</Icon>}>
+                                    <Typography>Settings</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Grid container alignItems={'center'} direction="row" justify="center" spacing={2}>
+                                        <Grid item>
+                                            <Paper className={classes.control}>
+                                                <LabelledCheckBox
+                                                    name="Use exact Number Bonds"
+                                                    color="primary"
+                                                    value={useExactNumberBonds}
+                                                    onChange={updateUseExactNumberBonds}
+                                                />
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item>
+                                            <Paper className={classes.control}>
+                                                <TextField
+                                                    type="number"
+                                                    label="number of rows"
+                                                    variant="standard"
+                                                    value={numberOfRows}
+                                                    onChange={(event) => updateNumberRows(event.target.value)}
+                                                />
+                                            </Paper>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container direction="row" justify="center" spacing={2}>
+                                        <Grid item>
+                                            <Paper className={classes.control}>
+                                                <LabelledCheckBox
+                                                    name="addition"
+                                                    color="primary"
+                                                    value={useAddition}
+                                                    onChange={updateAdditionUse}
+                                                />
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item>
+                                            <Paper className={classes.control}>
+                                                <LabelledCheckBox
+                                                    name="subtraction"
+                                                    color="primary"
+                                                    value={useSubtraction}
+                                                    onChange={updateSubtractionUse}
+                                                />
+                                            </Paper>
+                                        </Grid>
+                                    </Grid>
+                                </AccordionDetails>
+                            </Accordion>
                         </Paper>
                     </Grid>
-                    <Grid container direction="row" justify="center" spacing={2}>
-                        <Grid item>
-                            <Paper className={classes.control}>
-                                <LabelledCheckBox
-                                    name="addition"
-                                    color="primary"
-                                    value={useAddition}
-                                    onChange={updateAdditionUse}
-                                />
-                            </Paper>
-                        </Grid>
-                        <Grid item>
-                            <Paper className={classes.control}>
-                                <LabelledCheckBox
-                                    name="subtraction"
-                                    color="primary"
-                                    value={useSubtraction}
-                                    onChange={updateSubtractionUse}
-                                />
-                            </Paper>
-                        </Grid>
-                    </Grid>
+
                     <Grid item />
                     <Grid container direction="row" justify="center" spacing={2}>
                         <Grid item>
