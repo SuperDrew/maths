@@ -36,8 +36,7 @@ describe('Generator', () => {
         'should generate 10 rows with a hig enough Number Bond with useAddition: %s, useSubtraction: %s',
         (useAddition, useSubtraction) => {
             fc.assert(
-                fc.property(fc.constant(0), fc.integer(10, 20), (min, numberBond) => {
-                    const numberOfRows = 10;
+                fc.property(fc.constant(0), fc.constant(10), fc.integer(20, 30), (min, numberOfRows, numberBond) => {
                     const rows = generateRows(
                         { min, numberBond, useAddition: useAddition, useSubtraction: useSubtraction },
                         numberOfRows
