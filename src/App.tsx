@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './reset.css';
 import Button from '@material-ui/core/Button';
-import { Container, Grid, Icon, Paper, Typography } from '@material-ui/core';
+import { Container, Grid, Icon, Paper, TextField, Typography } from '@material-ui/core';
 import { LabelledSlider } from './components/LabelledSlider';
 import { LabelledCheckBox } from './components/LabelledCheckBox';
 import { QuestionTable } from './components/QuestionTable';
@@ -26,9 +26,9 @@ const useStyles = makeStyles(() => ({
 function App() {
     const classes = useStyles();
     const min = 0;
-    const numberOfRows = 5;
     const [numberBond, setNumberBond] = useState(10);
     const [useExactNumberBonds, setUseExactNumberBonds] = useState(true);
+    const [numberOfRows, setNumberRows] = useState(5);
     const [useAddition, setUseAddition] = useState(true);
     const [useSubtraction, setUseSubtraction] = useState(true);
     const [rows, setRows] = useState(
@@ -37,6 +37,10 @@ function App() {
 
     const updateNumberBond = (changedNumberBond: number) => {
         setNumberBond(changedNumberBond);
+    };
+    const updateNumberRows = (changedNumberRows: string) => {
+        const num = parseInt(changedNumberRows);
+        setNumberRows(num);
     };
     const updateUseExactNumberBonds = (exactNumberBondsUse: boolean) => {
         setUseExactNumberBonds(exactNumberBondsUse);
@@ -50,7 +54,7 @@ function App() {
 
     useEffect(() => {
         setRows(generateRows({ min, numberBond, useAddition, useSubtraction, useExactNumberBonds }, numberOfRows));
-    }, [min, numberBond, useAddition, useSubtraction, useExactNumberBonds]);
+    }, [min, numberBond, numberOfRows, useAddition, useSubtraction, useExactNumberBonds]);
 
     return (
         <div className="App">
@@ -74,13 +78,24 @@ function App() {
                                     onChange={updateNumberBond}
                                 />
                             </Grid>
-                            <Grid item>
-                                <LabelledCheckBox
-                                    name="exactNumberBonds"
-                                    color="primary"
-                                    value={useExactNumberBonds}
-                                    onChange={updateUseExactNumberBonds}
-                                />
+                            <Grid container alignItems={'center'}>
+                                <Grid item>
+                                    <LabelledCheckBox
+                                        name="Use exact Number Bonds"
+                                        color="primary"
+                                        value={useExactNumberBonds}
+                                        onChange={updateUseExactNumberBonds}
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <TextField
+                                        type="number"
+                                        label="number of rows"
+                                        variant="outlined"
+                                        value={numberOfRows}
+                                        onChange={(event) => updateNumberRows(event.target.value)}
+                                    />
+                                </Grid>
                             </Grid>
                         </Paper>
                     </Grid>
