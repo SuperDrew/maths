@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/mathss/static/css/main.2fc61f3f.chunk.css",
-    "main.js": "/mathss/static/js/main.8e569767.chunk.js",
-    "main.js.map": "/mathss/static/js/main.8e569767.chunk.js.map",
+    "main.js": "/mathss/static/js/main.f7ad0375.chunk.js",
+    "main.js.map": "/mathss/static/js/main.f7ad0375.chunk.js.map",
     "runtime-main.js": "/mathss/static/js/runtime-main.96ac1c09.js",
     "runtime-main.js.map": "/mathss/static/js/runtime-main.96ac1c09.js.map",
     "static/css/2.cc0d69ce.chunk.css": "/mathss/static/css/2.cc0d69ce.chunk.css",
-    "static/js/2.c65ba9a1.chunk.js": "/mathss/static/js/2.c65ba9a1.chunk.js",
-    "static/js/2.c65ba9a1.chunk.js.map": "/mathss/static/js/2.c65ba9a1.chunk.js.map",
+    "static/js/2.31f5c222.chunk.js": "/mathss/static/js/2.31f5c222.chunk.js",
+    "static/js/2.31f5c222.chunk.js.map": "/mathss/static/js/2.31f5c222.chunk.js.map",
     "index.html": "/mathss/index.html",
-    "precache-manifest.5f26d30e3f30de5b49a904ebd3829b72.js": "/mathss/precache-manifest.5f26d30e3f30de5b49a904ebd3829b72.js",
+    "precache-manifest.44f95b91f7bd505a706218322dde721a.js": "/mathss/precache-manifest.44f95b91f7bd505a706218322dde721a.js",
     "service-worker.js": "/mathss/service-worker.js",
     "static/css/2.cc0d69ce.chunk.css.map": "/mathss/static/css/2.cc0d69ce.chunk.css.map",
     "static/css/main.2fc61f3f.chunk.css.map": "/mathss/static/css/main.2fc61f3f.chunk.css.map",
-    "static/js/2.c65ba9a1.chunk.js.LICENSE.txt": "/mathss/static/js/2.c65ba9a1.chunk.js.LICENSE.txt",
+    "static/js/2.31f5c222.chunk.js.LICENSE.txt": "/mathss/static/js/2.31f5c222.chunk.js.LICENSE.txt",
     "static/media/index.css": "/mathss/static/media/roboto-vietnamese-400-normal.a8be5b46.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.96ac1c09.js",
     "static/css/2.cc0d69ce.chunk.css",
-    "static/js/2.c65ba9a1.chunk.js",
+    "static/js/2.31f5c222.chunk.js",
     "static/css/main.2fc61f3f.chunk.css",
-    "static/js/main.8e569767.chunk.js"
+    "static/js/main.f7ad0375.chunk.js"
   ]
 }
