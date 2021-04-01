@@ -35,18 +35,18 @@ const useStyles = makeStyles(() => ({
 
 const initialState = {
     numberBonds: 10,
+    maxNumberBond: 20,
     useExactNumberBonds: true,
     numberOfRows: 5,
     useAddition: true,
     useSubtraction: true,
 };
 
-const maxNumberBonds = 20;
-
 function App() {
     const classes = useStyles();
     const min = 0;
     const [numberBond, setNumberBond] = useState(initialState.numberBonds);
+    const [maxNumberBond, setMaxNumberBond] = useState(initialState.maxNumberBond);
     const [useExactNumberBonds, setUseExactNumberBonds] = useState(initialState.useExactNumberBonds);
     const [numberOfRows, setNumberRows] = useState(initialState.numberOfRows);
     const [useAddition, setUseAddition] = useState(initialState.useAddition);
@@ -57,6 +57,10 @@ function App() {
 
     const updateNumberBond = (changedNumberBond: number) => {
         setNumberBond(changedNumberBond);
+    };
+    const updateMaxNumberBond = (changedMaxNumberBond: string) => {
+        const num = parseInt(changedMaxNumberBond);
+        setMaxNumberBond(num);
     };
     const updateNumberRows = (changedNumberRows: string) => {
         const num = parseInt(changedNumberRows);
@@ -92,7 +96,7 @@ function App() {
                                 <LabelledSlider
                                     label="Number Bonds"
                                     min={1}
-                                    max={maxNumberBonds}
+                                    max={maxNumberBond}
                                     value={numberBond}
                                     step={1}
                                     onChange={updateNumberBond}
@@ -103,7 +107,7 @@ function App() {
                                     <Typography>Settings</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Grid container alignItems={'center'} direction="row" justify="center" spacing={2}>
+                                    <Grid container alignItems={'center'} justify="center" spacing={2}>
                                         <Grid item>
                                             <Paper className={classes.control}>
                                                 <LabelledCheckBox
@@ -118,6 +122,17 @@ function App() {
                                             <Paper className={classes.control}>
                                                 <TextField
                                                     type="number"
+                                                    label="Maximum Number Bonds"
+                                                    variant="standard"
+                                                    value={maxNumberBond}
+                                                    onChange={(event) => updateMaxNumberBond(event.target.value)}
+                                                />
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item>
+                                            <Paper className={classes.control}>
+                                                <TextField
+                                                    type="number"
                                                     label="number of rows"
                                                     variant="standard"
                                                     value={numberOfRows}
@@ -125,8 +140,6 @@ function App() {
                                                 />
                                             </Paper>
                                         </Grid>
-                                    </Grid>
-                                    <Grid container direction="row" justify="center" spacing={2}>
                                         <Grid item>
                                             <Paper className={classes.control}>
                                                 <LabelledCheckBox
