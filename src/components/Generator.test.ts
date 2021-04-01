@@ -28,20 +28,25 @@ expect.extend({
 });
 
 describe('Generator', () => {
-    it('should generate 10 rows', () => {
-        fc.assert(
-            fc.property(fc.nat(100), fc.nat(100), (nat1, nat2) => {
-                const expectedNumberOfRows = 10;
-                const min = nat1;
-                const numberBond = nat1 + nat2;
-                const rows = generateRows(
-                    { min, numberBond, useAddition: true, useSubtraction: false },
-                    expectedNumberOfRows
-                );
-                expect(rows).toHaveLength(expectedNumberOfRows);
-            })
-        );
-    });
+    it.each([
+        [true, false],
+        [false, true],
+        [true, true],
+    ])(
+        'should generate 10 rows with a hig enough Number Bond with useAddition: %s, useSubtraction: %s',
+        (useAddition, useSubtraction) => {
+            fc.assert(
+                fc.property(fc.constant(0), fc.integer(10, 20), (min, numberBond) => {
+                    const numberOfRows = 10;
+                    const rows = generateRows(
+                        { min, numberBond, useAddition: useAddition, useSubtraction: useSubtraction },
+                        numberOfRows
+                    );
+                    expect(rows).toHaveLength(numberOfRows);
+                })
+            );
+        }
+    );
 
     it('should not generate any rows if no operations are provided', () => {
         fc.assert(
