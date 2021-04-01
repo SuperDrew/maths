@@ -23,14 +23,24 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
+const initialState = {
+    numberBonds: 10,
+    useExactNumberBonds: true,
+    numberOfRows: 5,
+    useAddition: true,
+    useSubtraction: true,
+};
+
+const maxNumberBonds = 20;
+
 function App() {
     const classes = useStyles();
     const min = 0;
-    const [numberBond, setNumberBond] = useState(10);
-    const [useExactNumberBonds, setUseExactNumberBonds] = useState(true);
-    const [numberOfRows, setNumberRows] = useState(5);
-    const [useAddition, setUseAddition] = useState(true);
-    const [useSubtraction, setUseSubtraction] = useState(true);
+    const [numberBond, setNumberBond] = useState(initialState.numberBonds);
+    const [useExactNumberBonds, setUseExactNumberBonds] = useState(initialState.useExactNumberBonds);
+    const [numberOfRows, setNumberRows] = useState(initialState.numberOfRows);
+    const [useAddition, setUseAddition] = useState(initialState.useAddition);
+    const [useSubtraction, setUseSubtraction] = useState(initialState.useSubtraction);
     const [rows, setRows] = useState(
         generateRows({ min, numberBond, useAddition, useSubtraction, useExactNumberBonds }, numberOfRows)
     );
@@ -72,7 +82,7 @@ function App() {
                                 <LabelledSlider
                                     label="Number Bonds"
                                     min={1}
-                                    max={10}
+                                    max={maxNumberBonds}
                                     value={numberBond}
                                     step={1}
                                     onChange={updateNumberBond}
