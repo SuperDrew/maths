@@ -8,14 +8,13 @@ import {
     Grid,
     Icon,
     Paper,
-    TextField,
-    Typography,
+    Typography
 } from '@material-ui/core';
 import { LabelledSlider } from './components/LabelledSlider';
-import { LabelledCheckBox } from './components/LabelledCheckBox';
 import { QuestionTable } from './components/QuestionTable';
 import { makeStyles, withStyles } from '@material-ui/styles';
 import { generateRows } from '../core/generator/Generator';
+import { Setting, Settings } from './components/Settings';
 
 const GlobalCss = withStyles({
     '@global': {
@@ -54,31 +53,42 @@ function App() {
         generateRows({ min, numberBond, useAddition, useSubtraction, useExactNumberBonds }, numberOfRows)
     );
 
-    const updateNumberBond = (changedNumberBond: number) => {
-        setNumberBond(changedNumberBond);
-    };
-    const updateMaxNumberBond = (changedMaxNumberBond: string) => {
-        const num = parseInt(changedMaxNumberBond);
-        setMaxNumberBond(num);
-    };
-    const updateNumberRows = (changedNumberRows: string) => {
-        const num = parseInt(changedNumberRows);
-        setNumberRows(num);
-    };
-    const updateUseExactNumberBonds = (exactNumberBondsUse: boolean) => {
-        setUseExactNumberBonds(exactNumberBondsUse);
-    };
-    const updateAdditionUse = (additionUse: boolean) => {
-        setUseAddition(additionUse);
-    };
-    const updateSubtractionUse = (subtractionUse: boolean) => {
-        setUseSubtraction(subtractionUse);
-    };
-
     useEffect(() => {
         setRows(generateRows({ min, numberBond, useAddition, useSubtraction, useExactNumberBonds }, numberOfRows));
     }, [min, numberBond, numberOfRows, useAddition, useSubtraction, useExactNumberBonds]);
 
+    const settings: Setting[] = [
+        {
+            initialValue: useExactNumberBonds,
+            name: "Use exact Number Bonds",
+            type: 'checkbox',
+            onChange: setUseExactNumberBonds
+        },
+        {
+            initialValue: maxNumberBond,
+            name: "Maximum Number Bonds",
+            type: 'number',
+            onChange: setMaxNumberBond
+        },
+        {
+            initialValue: numberOfRows,
+            name: "number of rows",
+            type: 'number',
+            onChange: setNumberRows
+        },
+        {
+            initialValue: useAddition,
+            name: "addition",
+            type: 'checkbox',
+            onChange: setUseAddition
+        },
+        {
+            initialValue: useSubtraction,
+            name: "subtraction",
+            type: 'checkbox',
+            onChange: setUseSubtraction
+        },
+    ]
     return (
         <div className="App">
             <GlobalCss />
@@ -98,7 +108,7 @@ function App() {
                                     max={maxNumberBond}
                                     value={numberBond}
                                     step={1}
-                                    onChange={updateNumberBond}
+                                    onChange={setNumberBond}
                                 />
                             </Grid>
                             <Accordion>
@@ -106,60 +116,7 @@ function App() {
                                     <Typography>Settings</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Grid container alignItems={'center'} justify="center" spacing={2}>
-                                        <Grid item>
-                                            <Paper className={classes.control}>
-                                                <LabelledCheckBox
-                                                    name="Use exact Number Bonds"
-                                                    color="primary"
-                                                    value={useExactNumberBonds}
-                                                    onChange={updateUseExactNumberBonds}
-                                                />
-                                            </Paper>
-                                        </Grid>
-                                        <Grid item>
-                                            <Paper className={classes.control}>
-                                                <TextField
-                                                    type="number"
-                                                    label="Maximum Number Bonds"
-                                                    variant="standard"
-                                                    value={maxNumberBond}
-                                                    onChange={(event) => updateMaxNumberBond(event.target.value)}
-                                                />
-                                            </Paper>
-                                        </Grid>
-                                        <Grid item>
-                                            <Paper className={classes.control}>
-                                                <TextField
-                                                    type="number"
-                                                    label="number of rows"
-                                                    variant="standard"
-                                                    value={numberOfRows}
-                                                    onChange={(event) => updateNumberRows(event.target.value)}
-                                                />
-                                            </Paper>
-                                        </Grid>
-                                        <Grid item>
-                                            <Paper className={classes.control}>
-                                                <LabelledCheckBox
-                                                    name="addition"
-                                                    color="primary"
-                                                    value={useAddition}
-                                                    onChange={updateAdditionUse}
-                                                />
-                                            </Paper>
-                                        </Grid>
-                                        <Grid item>
-                                            <Paper className={classes.control}>
-                                                <LabelledCheckBox
-                                                    name="subtraction"
-                                                    color="primary"
-                                                    value={useSubtraction}
-                                                    onChange={updateSubtractionUse}
-                                                />
-                                            </Paper>
-                                        </Grid>
-                                    </Grid>
+                                    <Settings values={settings}/>
                                 </AccordionDetails>
                             </Accordion>
                         </Paper>
