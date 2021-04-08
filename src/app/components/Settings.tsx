@@ -1,6 +1,7 @@
 import { Grid, Paper, TextField } from '@material-ui/core';
 import { LabelledCheckBox } from './LabelledCheckBox';
 import React from 'react';
+import { makeStyles } from '@material-ui/styles';
 
 
 export type Setting = NumberSetting | BooleanSetting;
@@ -22,11 +23,18 @@ interface SettingsProps<T> {
     values: Setting[]
 }
 
+const useStyles = makeStyles(() => ({
+    control: {
+        padding: 10,
+    },
+}));
+
 export const Settings = <T, >({ values }: SettingsProps<T>) => {
+    const classes = useStyles();
     const items = values.map((value, index) => {
         if (value.type === 'checkbox') {
             return <Grid item key={index}>
-                <Paper>
+                <Paper className={classes.control}>
                     <LabelledCheckBox
                         name={value.name}
                         color='primary'
@@ -37,7 +45,7 @@ export const Settings = <T, >({ values }: SettingsProps<T>) => {
             </Grid>;
         } else {
             return <Grid item key={index}>
-                <Paper>
+                <Paper className={classes.control}>
                     <TextField
                         type='number'
                         label={value.name}
