@@ -24,6 +24,7 @@
     "start:debug": "react-scripts --inspect-brk start",
     "build": "react-scripts build",
     "test": "jest",
+    "test:watch": "jest --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
