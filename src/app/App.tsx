@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './reset.css';
 import Button from '@material-ui/core/Button';
 import {
     Accordion,
@@ -16,7 +15,7 @@ import { LabelledSlider } from './components/LabelledSlider';
 import { LabelledCheckBox } from './components/LabelledCheckBox';
 import { QuestionTable } from './components/QuestionTable';
 import { makeStyles, withStyles } from '@material-ui/styles';
-import { generateRows } from './components/Generator';
+import { generateRows } from '../core/generator/Generator';
 
 const GlobalCss = withStyles({
     '@global': {

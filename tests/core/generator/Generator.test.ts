@@ -1,6 +1,6 @@
-import { generateRows } from './Generator';
+import { generateRows } from '../../../src/core/generator/Generator';
 import * as fc from 'fast-check';
-import { debug } from '../config';
+import { debug } from '../../../src/config';
 
 declare global {
     namespace jest {

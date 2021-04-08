@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableRow, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Row } from './Generator';
+import { Row } from '../../core/generator/Generator';
 
 const useStyles = makeStyles(() => ({
     table: {
