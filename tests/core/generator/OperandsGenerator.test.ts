@@ -4,11 +4,11 @@ import {
     Operands,
     pickOperation,
     randBetween,
-} from './OperandsGenerator';
-import { Operations } from './Operations';
+} from '../../../src/core/generator/OperandsGenerator';
+import { Operations } from '../../../src/core/operations/Operations';
 import * as fc from 'fast-check';
-import { NotImplementedError } from '../customErrors/CustomeErrors';
-import { debug } from '../config';
+import { NotImplementedError } from '../../../src/core/customErrors/CustomErrors';
+import { debug } from '../../../src/config';
 
 declare global {
     namespace jest {
