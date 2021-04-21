@@ -5,4 +5,5 @@ This site is a tool for teachers to generate questionnaires for students and for
 ## Goals
  - Make the worksheet printable
  - Allow users to fill in answers and get a mark in the worksheet online
- - Introduce more sum formats
+ - Introduce more sum formats 
+ - Allow sum formats to be selectable
