@@ -134,5 +134,51 @@ describe('Generator', () => {
                 )
             );
         });
+
+        it('should generate roughly equal proportions of sum formats', () => {
+            fc.assert(
+                fc.property(
+                    fc.constant(0),
+                    fc.integer(1, 10),
+                    fc.integer(500, 550),
+                    (min, numberBond, numberOfRows) => {
+                        const rows = generateRows(
+                            {
+                                min,
+                                useExactNumberBonds: false,
+                                numberBond: min + numberBond,
+                                useAddition: true,
+                                useSubtraction: true,
+                            },
+                            numberOfRows
+                        );
+                        let aOperandBEqualsAnswer = 0;
+                        let aOperandAnswerEqualsX = 0;
+                        for (let row of rows) {
+                            for (let sum of row.sums) {
+                                if (sum.endsWith('___')) {
+                                    aOperandBEqualsAnswer++;
+                                }
+                                if (sum.split('=')[0].endsWith('___ ')) {
+                                    aOperandAnswerEqualsX++;
+                                }
+                            }
+                        }
+                        const numberOfSums = aOperandBEqualsAnswer + aOperandAnswerEqualsX;
+                        debug(
+                            `numberOfSums: ${numberOfSums}, fiftyPercent: ${numberOfSums / 2}, additions: ${
+                                (aOperandBEqualsAnswer * 100) / numberOfSums
+                            }%, subtractions: ${(aOperandAnswerEqualsX * 100) / numberOfSums}%`
+                        );
+                        const fiftyPercent = numberOfSums / 2;
+                        const tenPercent = numberOfSums / 10;
+                        const floor = fiftyPercent - tenPercent;
+                        const ceiling = fiftyPercent + tenPercent;
+                        expect(aOperandBEqualsAnswer).toBeWithinRange(floor, ceiling);
+                        expect(aOperandAnswerEqualsX).toBeWithinRange(floor, ceiling);
+                    }
+                )
+            );
+        })
     });
 });

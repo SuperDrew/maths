@@ -12,8 +12,12 @@ interface Operands {
     x: NumberOrAnswer;
 }
 
+const pickRandomElementInArray = <T>(array: Array<T>): T => {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 const pickOperation = (operations: Operations[]) => {
-    return operations[Math.floor(Math.random() * operations.length)];
+    return pickRandomElementInArray(operations);
 };
 
 const randBetween = (min: number, max: number) => {
@@ -63,4 +67,4 @@ const generateAOperandBEqualsAnswer = (generateProps: GenerateProps): Operands =
 };
 
 export type { Operands };
-export { generateAOperandBEqualsAnswer, generateAOperandAnswerEqualsX, randBetween, pickOperation };
+export { generateAOperandBEqualsAnswer, generateAOperandAnswerEqualsX, randBetween, pickRandomElementInArray, pickOperation };

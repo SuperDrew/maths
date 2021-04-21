@@ -1,4 +1,9 @@
-import { generateAOperandBEqualsAnswer, Operands } from './OperandsGenerator';
+import {
+    generateAOperandAnswerEqualsX,
+    generateAOperandBEqualsAnswer,
+    Operands,
+    pickRandomElementInArray
+} from './OperandsGenerator';
 
 const numberOfColumns = 3;
 const generationFactorForUniqueness = 4;
@@ -19,6 +24,8 @@ interface GenerateProps {
 const transformOperandsIntoSum = (operands: Operands) =>
     `${operands.a} ${operands.operation} ${operands.b} = ${operands.x}`;
 
+const arrayOfSumGenerators = [generateAOperandBEqualsAnswer, generateAOperandAnswerEqualsX];
+
 const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[] => {
     if (!generateProps.useSubtraction && !generateProps.useAddition) {
         return [];
@@ -27,7 +34,9 @@ const generateRows = (generateProps: GenerateProps, numberOfRows: number): Row[]
     const numSumsForWholeGrid = numberOfRows * numberOfColumns;
     let operandsArray: Operands[] = [];
     for (let j = 0; j < numSumsForWholeGrid * generationFactorForUniqueness; j++) {
-        operandsArray.push(generateAOperandBEqualsAnswer(generateProps));
+        operandsArray.push(pickRandomElementInArray(arrayOfSumGenerators)(generateProps));
+        //operandsArray.push(generateAOperandBEqualsAnswer(generateProps));
+        //operandsArray.push(generateAOperandAnswerEqualsX(generateProps));
     }
     const sumsArray: string[] = operandsArray.map<string>((operand) => {
         return transformOperandsIntoSum(operand);
