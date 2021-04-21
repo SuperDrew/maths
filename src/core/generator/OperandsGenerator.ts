@@ -52,26 +52,29 @@ const generateAOperandAnswerEqualsX = (generateProps: GenerateProps): Operands =
 };
 
 const generateAOperandBEqualsAnswer = (generateProps: GenerateProps): Operands => {
-    if (generateProps.useExactNumberBonds) {
-        const operation = pickOperation(createOperations(generateProps));
-        if (operation === Operations.Subtraction) {
-            const a = generateProps.numberBond;
-            const b = randBetween(generateProps.min, generateProps.numberBond);
-            return { a, operation, b, x: '___' };
-        }
-        if (operation === Operations.Addition) {
-            const a = randBetween(generateProps.min, generateProps.numberBond);
-            const b = generateProps.numberBond - a;
-            return { a, operation, b, x: '___' };
-        }
-        throw new NotImplementedError(operation);
-    }
-    const a = randBetween(generateProps.min, generateProps.numberBond);
     const operation = pickOperation(createOperations(generateProps));
-    const b =
-        operation === Operations.Addition
-            ? randBetween(generateProps.min, generateProps.numberBond - a)
-            : randBetween(0, a);
+    let a: NumberOrAnswer;
+    let b: NumberOrAnswer;
+    if (generateProps.useExactNumberBonds) {
+        if (operation === Operations.Subtraction) {
+            a = generateProps.numberBond;
+            b = randBetween(generateProps.min, generateProps.numberBond);
+        }
+        else if (operation === Operations.Addition) {
+            a = randBetween(generateProps.min, generateProps.numberBond);
+            b = generateProps.numberBond - a;
+        }
+        else {
+            throw new NotImplementedError(operation);
+        }
+    }
+    else {
+        a = randBetween(generateProps.min, generateProps.numberBond);
+        b =
+            operation === Operations.Addition
+                ? randBetween(generateProps.min, generateProps.numberBond - a)
+                : randBetween(0, a);
+    }
     return { a, operation, b, x: '___' };
 };
 
