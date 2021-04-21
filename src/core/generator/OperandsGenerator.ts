@@ -37,14 +37,17 @@ function createOperations(generateProps: GenerateProps) {
 
 const generateAOperandAnswerEqualsX = (generateProps: GenerateProps): Operands => {
     const operation = pickOperation(createOperations(generateProps));
-    // TODO this is dumb, for exactNumberBonds and subtraction it will always generate <numberBond> - 0 = <numberbond>
+    let a: NumberOrAnswer;
+    let x: NumberOrAnswer;
     if (generateProps.useExactNumberBonds) {
-        const a = operation === Operations.Addition ? randBetween(generateProps.min, generateProps.numberBond) : generateProps.numberBond;
-        const x = generateProps.numberBond
-        return { a, operation, b: '___', x };
+        // TODO this is dumb, for exactNumberBonds and subtraction it will always generate <numberBond> - 0 = <numberbond>
+        a = operation === Operations.Addition ? randBetween(generateProps.min, generateProps.numberBond) : generateProps.numberBond;
+        x = generateProps.numberBond
     }
-    const a = randBetween(generateProps.min, generateProps.numberBond);
-    const x = operation === Operations.Addition ? randBetween(a, generateProps.numberBond) : randBetween(0, a);
+    else {
+        a = randBetween(generateProps.min, generateProps.numberBond);
+        x = operation === Operations.Addition ? randBetween(a, generateProps.numberBond) : randBetween(0, a);
+    }
     return { a, operation, b: '___', x };
 };
 
