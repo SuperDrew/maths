@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/mathss/static/css/main.9559e866.chunk.css",
-    "main.js": "/mathss/static/js/main.db007944.chunk.js",
-    "main.js.map": "/mathss/static/js/main.db007944.chunk.js.map",
-    "runtime-main.js": "/mathss/static/js/runtime-main.96ac1c09.js",
-    "runtime-main.js.map": "/mathss/static/js/runtime-main.96ac1c09.js.map",
-    "static/css/2.cc0d69ce.chunk.css": "/mathss/static/css/2.cc0d69ce.chunk.css",
-    "static/js/2.2445ecdb.chunk.js": "/mathss/static/js/2.2445ecdb.chunk.js",
-    "static/js/2.2445ecdb.chunk.js.map": "/mathss/static/js/2.2445ecdb.chunk.js.map",
-    "index.html": "/mathss/index.html",
-    "precache-manifest.9ee9880059ca6203d57ae0e4713f71cb.js": "/mathss/precache-manifest.9ee9880059ca6203d57ae0e4713f71cb.js",
-    "service-worker.js": "/mathss/service-worker.js",
-    "static/css/2.cc0d69ce.chunk.css.map": "/mathss/static/css/2.cc0d69ce.chunk.css.map",
-    "static/css/main.9559e866.chunk.css.map": "/mathss/static/css/main.9559e866.chunk.css.map",
-    "static/js/2.2445ecdb.chunk.js.LICENSE.txt": "/mathss/static/js/2.2445ecdb.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/mathss/static/media/roboto-vietnamese-400-normal.a8be5b46.woff2"
+    "main.css": "/maths/static/css/main.9559e866.chunk.css",
+    "main.js": "/maths/static/js/main.bb67c355.chunk.js",
+    "main.js.map": "/maths/static/js/main.bb67c355.chunk.js.map",
+    "runtime-main.js": "/maths/static/js/runtime-main.69e8da4b.js",
+    "runtime-main.js.map": "/maths/static/js/runtime-main.69e8da4b.js.map",
+    "static/css/2.61af0350.chunk.css": "/maths/static/css/2.61af0350.chunk.css",
+    "static/js/2.2445ecdb.chunk.js": "/maths/static/js/2.2445ecdb.chunk.js",
+    "static/js/2.2445ecdb.chunk.js.map": "/maths/static/js/2.2445ecdb.chunk.js.map",
+    "index.html": "/maths/index.html",
+    "precache-manifest.a2ef4c6ab4a9315efd32d2d5b965ddf9.js": "/maths/precache-manifest.a2ef4c6ab4a9315efd32d2d5b965ddf9.js",
+    "service-worker.js": "/maths/service-worker.js",
+    "static/css/2.61af0350.chunk.css.map": "/maths/static/css/2.61af0350.chunk.css.map",
+    "static/css/main.9559e866.chunk.css.map": "/maths/static/css/main.9559e866.chunk.css.map",
+    "static/js/2.2445ecdb.chunk.js.LICENSE.txt": "/maths/static/js/2.2445ecdb.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/maths/static/media/roboto-vietnamese-400-normal.a8be5b46.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.96ac1c09.js",
-    "static/css/2.cc0d69ce.chunk.css",
+    "static/js/runtime-main.69e8da4b.js",
+    "static/css/2.61af0350.chunk.css",
     "static/js/2.2445ecdb.chunk.js",
     "static/css/main.9559e866.chunk.css",
-    "static/js/main.db007944.chunk.js"
+    "static/js/main.bb67c355.chunk.js"
   ]
 }
